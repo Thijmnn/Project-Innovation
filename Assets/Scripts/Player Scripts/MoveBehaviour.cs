@@ -6,9 +6,10 @@ public class MoveBehaviour : MonoBehaviour
 {
     [SerializeField]
     float speed;
+    float xVelocity;
 
     private Rigidbody2D rb;
-    private float speedX;
+    
     Camera cam;
 
     // Start is called before the first frame update
@@ -24,14 +25,22 @@ public class MoveBehaviour : MonoBehaviour
     void Update()
     {
         LeftToRight();
+        TouchCheck();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(xVelocity, 0);
     }
 
     void LeftToRight()
     {
         //Movement
-        speedX = Input.GetAxisRaw("Horizontal") * speed;
-        rb.velocity = new Vector2(speedX, 0);
-        
+        xVelocity = Input.acceleration.x * speed;
+
+        /*speedX = Input.GetAxisRaw("Horizontal") * speed;
+        rb.velocity = new Vector2(speedX, 0);*/
+
         //Teleporting from side to side when outside of the screen
         Vector3 cPos = cam.WorldToScreenPoint(transform.position);
         if (cPos.x + 20 <= 0)
@@ -43,4 +52,27 @@ public class MoveBehaviour : MonoBehaviour
             transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
         }
     }
+    private void TouchCheck()
+    {
+        if(Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began) 
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.transform.tag == "Player")
+                {
+                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.white;
+                    Debug.Log("skibidy");
+                    LaunchPlayer();
+                }
+            }
+        }
+    }
+    private void LaunchPlayer()
+    {
+        
+        transform.position = Input.touches[0].position;
+    }
+    
 }
