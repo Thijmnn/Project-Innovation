@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int EnemyLevel = 0;
     public List<EnemyInfo> enem;
     public static event Action<EnemyInfo,float> gameStart;
+    public Transform scalingObj;
     public static GameManager Instance { get; private set; }
 
     private void Awake()

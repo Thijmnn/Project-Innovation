@@ -15,6 +15,7 @@ public class MoveBehaviour : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
     }
@@ -32,8 +33,6 @@ public class MoveBehaviour : MonoBehaviour
         rb.velocity = new Vector2(speedX, 0);
         
         //Teleporting from side to side when outside of the screen
-            print(cam.WorldToScreenPoint(transform.position).x);
-            print(Screen.width);
         Vector3 cPos = cam.WorldToScreenPoint(transform.position);
         if (cPos.x + 20 <= 0)
         {

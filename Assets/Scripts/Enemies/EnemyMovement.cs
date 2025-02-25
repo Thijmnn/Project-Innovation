@@ -8,9 +8,10 @@ public class EnemyMovement : MonoBehaviour
     Camera cam;
     [SerializeField] float fallingSpeed;
     Rigidbody2D rb;
+    [SerializeField] float PercentageOfScreen = 1000;
     void Start()
     {
-        print("spawned");
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
         cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
