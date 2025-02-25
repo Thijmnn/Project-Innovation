@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
         if (gameOn)
         {
             height += speed * Time.deltaTime;
-            if(height == 20)
+            if((int)height == 20 && EnemyLevel < 1)
             {
-                EnemyLevel = 2;
+                EnemyLevel = 1;
                 gameStart?.Invoke(enem[EnemyLevel], height);
             }
         }

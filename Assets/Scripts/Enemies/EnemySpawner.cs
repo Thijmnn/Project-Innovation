@@ -26,19 +26,27 @@ public class SpawnerScript : MonoBehaviour
     private void GameStart(EnemyInfo e, float height)
     {
         enemy = e;
-        Invoke("Spawn", 0);
+        StopAllCoroutines();
+        StartCoroutine(Spawn());
     }
-    void Spawn()
+    IEnumerator Spawn()
     {
-        int spawnChoice = Random.Range(0, enemy.EnemyList.Count);
-        int randomSpawn = Random.Range(1, enemy.EnemyList[spawnChoice].AmmountPerSpawn);
-        for (int i = 0; i < randomSpawn; i++)
+        while (true)
         {
-            float randomX = Random.Range(transform.position.x - transform.localScale.x / 2, transform.position.x + transform.localScale.x / 2);
-            Vector3 spawnPos = new Vector3(randomX, transform.position.y, transform.position.z);
-            GameObject enem = Instantiate(enemy.EnemyList[0].EnemyType, spawnPos, transform.rotation);
+            int spawnChoice = Random.Range(0, enemy.EnemyList.Count);
+            int randomSpawn = Random.Range(1, enemy.EnemyList[spawnChoice].AmmountPerSpawn);
+            print(randomSpawn);
+            for (int j = 1; j > 0; j++)
+            {
+                for (int i = 0; i < randomSpawn; i++)
+                {
+                    float randomX = Random.Range(transform.position.x - transform.localScale.x / 2, transform.position.x + transform.localScale.x / 2);
+                    Vector3 spawnPos = new Vector3(randomX, transform.position.y, transform.position.z);
+                    print(spawnPos);
+                    GameObject enem = Instantiate(enemy.EnemyList[0].EnemyType, spawnPos, transform.rotation);
+                }
+                yield return new WaitForSeconds(timer);
+            }
         }
-
-        Invoke("Spawn", timer);
     }
 }
