@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BackgroundScrolling : MonoBehaviour
 {
-    public float speed;
 
     [SerializeField]
     private Renderer bgRenderer;
+    [SerializeField]
+    float speedScale;
 
     // Update is called once per frame
     void Update()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(0,speed * Time.deltaTime);
+        bgRenderer.material.mainTextureOffset += new Vector2(0,GameManager.Instance.speed / speedScale * Time.deltaTime);
     }
 }
