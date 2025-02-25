@@ -7,6 +7,7 @@ public class MoveBehaviour : MonoBehaviour
     [SerializeField]
     float speed;
     float xVelocity;
+    float speedX;
 
     private Rigidbody2D rb;
     
@@ -31,6 +32,7 @@ public class MoveBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(xVelocity, 0);
+        rb.velocity = new Vector2(speedX, 0);
     }
 
     void LeftToRight()
@@ -38,8 +40,7 @@ public class MoveBehaviour : MonoBehaviour
         //Movement
         xVelocity = Input.acceleration.x * speed;
 
-        /*speedX = Input.GetAxisRaw("Horizontal") * speed;
-        rb.velocity = new Vector2(speedX, 0);*/
+        speedX = Input.GetAxisRaw("Horizontal") * speed;
 
         //Teleporting from side to side when outside of the screen
         Vector3 cPos = cam.WorldToScreenPoint(transform.position);

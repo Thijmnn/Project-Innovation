@@ -7,7 +7,7 @@ public class SpawnerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     float timer = 10;
-    EnemyInfo enemy;
+    [SerializeField] EnemyInfo enemy;
     private void Start()
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
