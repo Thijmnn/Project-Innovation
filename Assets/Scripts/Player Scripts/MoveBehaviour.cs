@@ -9,10 +9,12 @@ public class MoveBehaviour : MonoBehaviour
 
     private Rigidbody2D rb;
     private float speedX;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
     }
@@ -30,13 +32,16 @@ public class MoveBehaviour : MonoBehaviour
         rb.velocity = new Vector2(speedX, 0);
         
         //Teleporting from side to side when outside of the screen
-        if((transform.position.x + transform.localScale.x/2) <= -3)
+            print(cam.WorldToScreenPoint(transform.position).x);
+            print(Screen.width);
+        Vector3 cPos = cam.WorldToScreenPoint(transform.position);
+        if (cPos.x + 20 <= 0)
         {
-            transform.position = new Vector3(3 + transform.localScale.x/3,transform.position.y, transform.position.z);
+            transform.position = cam.ScreenToWorldPoint(new Vector3(Screen.width, cPos.y, cPos.z));
         }
-        if ((transform.position.x - transform.localScale.x / 2) >= 3)
+        if (cPos.x - 20 >= Screen.width)
         {
-            transform.position = new Vector3(-3 - transform.localScale.x / 3, transform.position.y, transform.position.z);
+            transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
         }
     }
 }

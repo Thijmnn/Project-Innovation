@@ -20,10 +20,9 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         rb.AddForce(new Vector2(0,-fallingSpeed));
-        if (cam.WorldToScreenPoint(transform.position).y < 0);
+        if (cam.WorldToScreenPoint(transform.position).y < -Screen.width/2)
         {
-            print(cam.WorldToScreenPoint(transform.position).y);
-            print(Screen.height);
+            
             Destroy(gameObject);
         }
     }
