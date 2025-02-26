@@ -18,10 +18,4 @@ public class PlayerManager : MonoBehaviour
         upgrade = GetComponent<Upgrade>();
         upgrade.SetRefrences(moveBehaviour,shootBehviour);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
