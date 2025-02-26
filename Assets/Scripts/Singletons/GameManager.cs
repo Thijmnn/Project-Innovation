@@ -6,7 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float speed;
+    public float jetMult = 1;
     public float height;
+    public int money;
     bool gameOn;
     [SerializeField] int EnemyLevel = 0;
     public List<EnemyInfo> enem;
@@ -43,12 +45,30 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
-            height += speed * Time.deltaTime;
+            height += speed * Time.deltaTime * jetMult;
             if((int)height == 20 && EnemyLevel < 1)
             {
                 EnemyLevel = 1;
                 gameStart?.Invoke(enem[EnemyLevel], height);
             }
         }
+    }
+    private void OnEnable()
+    {
+        CoinScript.AddMoney += AddCoin;
+        MoveBehaviour.jetMulti += SpeedUp;
+    }
+    private void OnDisable()
+    {
+        CoinScript.AddMoney -= AddCoin;
+        MoveBehaviour.jetMulti -= SpeedUp;
+    }
+    private void AddCoin(CoinInfo coin)
+    {
+        money += coin.ammount;
+    }
+    private void SpeedUp(float mult)
+    {
+        jetMult = mult;
     }
 }

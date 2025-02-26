@@ -20,7 +20,7 @@ public class EnemyMoveBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(new Vector2(0,-fallingSpeed));
+        rb.AddForce(new Vector2(0,-fallingSpeed *GameManager.Instance.jetMult));
         if (cam.WorldToScreenPoint(transform.position).y < -Screen.width/2)
         {
             

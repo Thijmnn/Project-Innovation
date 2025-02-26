@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -7,8 +8,11 @@ public class MoveBehaviour : MonoBehaviour
 {
     [Header("Stats")]
     public float speed;
+    public float jetMult;
+    public static event Action<float> jetMulti;
+    bool boosting;
 
-float xVelocity;
+    float xVelocity;
 float speedX;
 
 private Rigidbody2D rb;
