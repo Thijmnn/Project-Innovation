@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMoveBehaviour : MonoBehaviour
 {
     // Start is called before the first frame updateee
     Camera cam;

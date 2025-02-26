@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8679070384597697819}
   - component: {fileID: 7973761080822857046}
   - component: {fileID: 3410532373836278887}
+  - component: {fileID: -6443603845058543360}
   - component: {fileID: -1689565268457270292}
   m_Layer: 0
   m_Name: Debry
@@ -158,6 +159,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6443603845058543360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5575662016540852905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveBehaviour: {fileID: -1689565268457270292}
+  shootBehviour: {fileID: 0}
 --- !u!114 &-1689565268457270292
 MonoBehaviour:
   m_ObjectHideFlags: 0
