@@ -69,9 +69,17 @@ private void TouchCheck()
         {
             if (hit.transform.tag == "Player")
             {
+<<<<<<< Updated upstream
                 hit.collider.GetComponent<MeshRenderer>().material.color = Color.white;
                 Debug.Log("skibidy");
                 LaunchPlayer();
+=======
+                if(hit.transform.CompareTag("Player"))
+                {
+                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.white;
+                    LaunchPlayer();
+                }
+>>>>>>> Stashed changes
             }
         }
     }
