@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private MoveBehaviour moveBehaviour;
     [SerializeField]
-    private ShootingBehaviour shootBehviour;
+    private ShootingBehaviour shootBehviour = null;
     [SerializeField] Upgrade upgrade;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class PlayerManager : MonoBehaviour
         moveBehaviour = GetComponent<MoveBehaviour>();
         shootBehviour = GetComponent<ShootingBehaviour>();
         upgrade = GetComponent<Upgrade>();
-        upgrade.SetRefrences(moveBehaviour,shootBehviour);
+        upgrade.SetRefrences(moveBehaviour);
     }
 }

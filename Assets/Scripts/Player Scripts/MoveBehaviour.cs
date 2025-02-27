@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class MoveBehaviour : MonoBehaviour
@@ -11,14 +10,26 @@ public class MoveBehaviour : MonoBehaviour
     public float jetMult;
     public static event Action<float> jetMulti;
     bool boosting;
+    [SerializeField] float moveSpeed;
+    public float speedCharge;
+    [SerializeField] GameObject playerLauncher;
 
     float xVelocity;
-float speedX;
+    float yVelocity;
 
-private Rigidbody2D rb;
+    float speedX;
+    
+    float launchSpeed;
 
-Camera cam;
+    private Rigidbody2D rb;
 
+    bool launched;
+
+    Camera cam;
+
+    [SerializeField] bool isOnPhone;
+
+    public static event Action<float> onLaunch;
 // Start is called before the first frame update
 void Start()
 {
@@ -31,22 +42,29 @@ void Start()
 // Update is called once per frame
 void Update()
 {
-    LeftToRight();
+    if (launched) { LeftToRight(); }
     TouchCheck();
 }
 
 private void FixedUpdate()
 {
-    rb.velocity = new Vector2(xVelocity, 0);
-    rb.velocity = new Vector2(speedX, 0);
+    if (isOnPhone)
+    {
+       rb.velocity = new Vector2(xVelocity, yVelocity);
+    }
+    else
+    {
+       rb.velocity = new Vector2(speedX, 0);
+    }
 }
 
 void LeftToRight()
 {
     //Movement
-    xVelocity = Input.acceleration.x * speed;
+    xVelocity = Input.acceleration.x * moveSpeed;
+    yVelocity = Input.acceleration.y * moveSpeed;
 
-    speedX = Input.GetAxisRaw("Horizontal") * speed;
+    speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
     //Teleporting from side to side when outside of the screen
     Vector3 cPos = cam.WorldToScreenPoint(transform.position);
@@ -59,35 +77,59 @@ void LeftToRight()
         transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
     }
 }
-private void TouchCheck()
-{
-    if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+    private void TouchCheck()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        //HOLDING DOWN ON THE SCREEN
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary)
         {
-            if (hit.transform.tag == "Player")
-            {
-<<<<<<< Updated upstream
-                hit.collider.GetComponent<MeshRenderer>().material.color = Color.white;
-                Debug.Log("skibidy");
-                LaunchPlayer();
-=======
-                if(hit.transform.CompareTag("Player"))
-                {
-                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.white;
-                    LaunchPlayer();
-                }
->>>>>>> Stashed changes
-            }
-        }
-    }
-}
-private void LaunchPlayer()
-{
+            launchSpeed += speedCharge;
+            
 
-    transform.position = Input.touches[0].position;
-}
+            //JETPACK
+        }
+        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
+        {
+            LaunchPlayer(launchSpeed);
+            launched = true;
+            launchSpeed = 0;
+
+        }
+
+        //DRAGGING DOWN
+        /*if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
+        {
+            Vector3 fingerPos = cam.ScreenToWorldPoint(Input.touches[0].position);
+            if (fingerPos.y <= playerLauncher.transform.position.y)
+            {
+                Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y,0));
+                transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);
+
+                
+                
+            }
+            else
+            {
+                transform.position = playerLauncher.transform.position;
+            }
+
+        }
+        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
+        {
+            float dist = transform.position.y - playerLauncher.transform.position.y;
+            LaunchPlayer(dist);
+            launched = true;
+            launchSpeed = 0;
+            //Temp
+            transform.position = playerLauncher.transform.position;
+        }*/
+    }
+    private void LaunchPlayer(float speedCharge) 
+    {
+        /*transform.position = cam.ScreenToWorldPoint(new Vector3(Input.touches[0].position.x, Input.touches[0].position.y,0));
+        transform.position = new Vector3(transform.position.x,transform.position.y,0);*/
+
+        print(speedCharge);
+        
+    }
     
 }

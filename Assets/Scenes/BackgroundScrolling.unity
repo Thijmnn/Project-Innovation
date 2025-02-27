@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 2130077638}
   - component: {fileID: 2130077643}
   - component: {fileID: 2130077644}
+  - component: {fileID: 2130077645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -736,6 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveBehaviour: {fileID: 0}
   shootBehviour: {fileID: 0}
+  upgrade: {fileID: 2130077645}
 --- !u!61 &2130077640
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -891,6 +893,18 @@ MonoBehaviour:
   executeInUpdate: 0
   anchorType: 1
   anchorOffset: {x: 0, y: 3, z: 0}
+--- !u!114 &2130077645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130077637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474e2e37f0eff449a8c6171d8b6a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

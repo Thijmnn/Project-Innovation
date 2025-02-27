@@ -17,11 +17,12 @@ public class Upgrade : MonoBehaviour
     public void SetRefrences(MoveBehaviour move, ShootingBehaviour shoot = null)
     {
         movement = move;
-        shooting = shoot;
+        if (shooting != null) { shooting = shoot; }
+        
     }
     void UpgradingStats(UpgradeStats up)
     {
-        movement.speed *= up.speedMult;
+        movement.speedCharge *= up.speedMult;
     }
 
 }
