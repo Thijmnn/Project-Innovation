@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
     public float jetMult = 1;
     public float height;
     public int money;
+    [SerializeField] int maxLevel;
     bool gameOn;
     [SerializeField] int EnemyLevel = 0;
     public List<EnemyInfo> enem;
-    public static event Action<EnemyInfo,float> gameStart;
+    public List<CoinInfo> coins;
+    public static event Action<EnemyInfo,CoinInfo,float> gameStart;
     public Transform scalingObj;
+    [SerializeField]bool levelUp = false;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour
     void GameStart()
     {
         gameOn = true;
-        gameStart?.Invoke(enem[EnemyLevel],height);
+        gameStart?.Invoke(enem[EnemyLevel],coins[EnemyLevel],height);
     }
 
     // Update is called once per frame
@@ -46,13 +49,20 @@ public class GameManager : MonoBehaviour
         if (gameOn)
         {
             height += speed * Time.deltaTime * jetMult;
-            if((int)height == 20 && EnemyLevel < 1)
+            if (height > 1 && (int)height%20 == 0 && EnemyLevel < maxLevel && !levelUp)
             {
-                EnemyLevel = 1;
-                gameStart?.Invoke(enem[EnemyLevel], height);
+                levelUp = true;
+                EnemyLevel++;
+                Invoke("NextStage",2);
+                gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
         }
     }
+    void NextStage()
+    {
+        levelUp = false;
+    }
+
     private void OnEnable()
     {
         CoinScript.AddMoney += AddCoin;
@@ -63,9 +73,9 @@ public class GameManager : MonoBehaviour
         CoinScript.AddMoney -= AddCoin;
         MoveBehaviour.jetMulti -= SpeedUp;
     }
-    private void AddCoin(CoinInfo coin)
+    private void AddCoin(CoinInfo coin,int coinType)
     {
-        money += coin.ammount;
+        money += coin.CoinList[coinType].ammount;
     }
     private void SpeedUp(float mult)
     {

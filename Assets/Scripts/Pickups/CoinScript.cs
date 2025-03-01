@@ -10,7 +10,8 @@ public class CoinScript : MonoBehaviour
     [SerializeField] float speed;
     Camera cam;
     public CoinInfo coin;
-    public static event Action<CoinInfo> AddMoney;
+    public int coinType;
+    public static event Action<CoinInfo,int> AddMoney;
     Rigidbody2D rb;
     // Start is called before the first frame update
     private void Start()
@@ -26,7 +27,7 @@ public class CoinScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            AddMoney?.Invoke(coin);
+            AddMoney?.Invoke(coin,coinType);
         }
     }
     private void FixedUpdate()

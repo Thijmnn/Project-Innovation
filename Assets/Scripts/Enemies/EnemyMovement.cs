@@ -5,10 +5,9 @@ using UnityEngine;
 public class EnemyMoveBehaviour : MonoBehaviour
 {
     // Start is called before the first frame updateee
-    Camera cam;
-    [SerializeField] float fallingSpeed;
-    Rigidbody2D rb;
-    [SerializeField] float PercentageOfScreen = 1000;
+    protected Camera cam;
+    protected Rigidbody2D rb;
+    public int orientation;
     void Start()
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
@@ -17,14 +16,4 @@ public class EnemyMoveBehaviour : MonoBehaviour
         rb.gravityScale = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.AddForce(new Vector2(0,-fallingSpeed *GameManager.Instance.jetMult));
-        if (cam.WorldToScreenPoint(transform.position).y < -Screen.width/2)
-        {
-            
-            Destroy(gameObject);
-        }
-    }
 }

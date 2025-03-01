@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5da5c6ad010cf5499f06541df8cde50, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: b61388609ed841947a92011326d70550, type: 3}
+  m_Name: Coin2
   m_EditorClassIdentifier: 
-  EnemyList:
-  - SpawnTop: 1
-    EnemyType: {fileID: 5575662016540852905, guid: 70cee6ba9f77f07448612a8ec83530cd, type: 3}
-  minTimeBetweenSpawns: 5
-  maxTimeBetweenSpawns: 10
-  AmmountPerSpawn: 3
+  CoinList:
+  - ammountPerSpawn: 1
+    CoinType: {fileID: 4894999896522184227, guid: b78df8b3f69e1e8448eb5d866e9b7674, type: 3}
+    ammount: 1
+  minTimeBetweenSpawns: 3
+  maxTimeBetweenSpawns: 5

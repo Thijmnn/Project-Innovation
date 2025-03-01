@@ -172,7 +172,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31439184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -224,8 +224,8 @@ Transform:
   m_GameObject: {fileID: 31439184}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 9.5, z: 0}
-  m_LocalScale: {x: 8, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 13, y: 27.256, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -257,8 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PercentageOfScreen: 100
   executeInUpdate: 0
-  anchorType: 7
-  anchorOffset: {x: 0, y: 1, z: 0}
+  anchorType: 4
+  anchorOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &426904055
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,12 +455,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  jetMult: 1
   height: 0
+  money: 0
+  maxLevel: 1
   EnemyLevel: 0
   enem:
   - {fileID: 11400000, guid: 040f3a126a3074f49a5eb63234fda06b, type: 2}
   - {fileID: 11400000, guid: f2317111673bca543950b29b35207bce, type: 2}
+  coins:
+  - {fileID: 11400000, guid: 3ede46f60dc8a474fa78d721ab2124d0, type: 2}
+  - {fileID: 11400000, guid: c934b6a036c3fbd4f9ce3367af8085b4, type: 2}
   scalingObj: {fileID: 1663500691}
+  levelUp: 0
 --- !u!4 &1366175643
 Transform:
   m_ObjectHideFlags: 0
@@ -636,7 +643,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 18
   field of view: 60
   orthographic: 1
   orthographic size: 8.5
@@ -700,11 +707,12 @@ GameObject:
   - component: {fileID: 2130077640}
   - component: {fileID: 2130077639}
   - component: {fileID: 2130077638}
+  - component: {fileID: 2130077645}
   - component: {fileID: 2130077643}
   - component: {fileID: 2130077644}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,6 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jetMult: 0
 --- !u!114 &2130077639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,8 +743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c800740a94bb0344c8bac161582bd6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 0}
+  moveBehaviour: {fileID: 2130077638}
   shootBehviour: {fileID: 0}
+  upgrade: {fileID: 0}
 --- !u!61 &2130077640
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -891,6 +901,18 @@ MonoBehaviour:
   executeInUpdate: 0
   anchorType: 1
   anchorOffset: {x: 0, y: 3, z: 0}
+--- !u!114 &2130077645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130077637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2474e2e37f0eff449a8c6171d8b6a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
