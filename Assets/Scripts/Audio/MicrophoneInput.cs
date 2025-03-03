@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.iOS;
 using UnityEngine.Android;
 using System.Linq;
+using TMPro;
 
 public class MicrophoneInput : MonoBehaviour
-{ 
+{
+    [SerializeField] TextMeshProUGUI[] micNameHolder;
     void Start()
     {
-       
-       
+        for(int i = 0; i < micNameHolder.Length; i++)
+        {
+            micNameHolder[i].text = Microphone.devices[i];
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class MicrophoneInput : MonoBehaviour
 
         audioSource.Play();
         audioSource.clip = null;*/
+        
 
         foreach (var device in Microphone.devices)
         {
