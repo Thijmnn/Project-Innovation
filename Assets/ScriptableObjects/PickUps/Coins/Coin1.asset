@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61388609ed841947a92011326d70550, type: 3}
   m_Name: Coin1
   m_EditorClassIdentifier: 
-  ammount: 0
+  CoinList:
+  - ammountPerSpawn: 1
+    CoinType: {fileID: 4894999896522184227, guid: b78df8b3f69e1e8448eb5d866e9b7674, type: 3}
+    ammount: 1
+  minTimeBetweenSpawns: 3
+  maxTimeBetweenSpawns: 5

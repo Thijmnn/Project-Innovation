@@ -6,10 +6,13 @@ using UnityEngine;
 public class EnemyInfo : ScriptableObject
 {
     public List<Info> EnemyList;
+    public int minTimeBetweenSpawns;
+    public int maxTimeBetweenSpawns;
+    public int AmmountPerSpawn;
 }
 [Serializable]
 public class Info
 {
+    public bool SpawnTop;
     public GameObject EnemyType;
-    public int AmmountPerSpawn;
 }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7973761080822857046}
   - component: {fileID: 3410532373836278887}
   - component: {fileID: -6443603845058543360}
-  - component: {fileID: 6264415249157892631}
+  - component: {fileID: 672071682035791407}
   m_Layer: 3
-  m_Name: Debry
+  m_Name: Vulture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.9678996, y: 3.086977, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 0.01}
+  m_LocalScale: {x: 2.5, y: 0.5, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -171,9 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 6264415249157892631}
+  moveBehaviour: {fileID: 672071682035791407}
   shootBehviour: {fileID: 0}
---- !u!114 &6264415249157892631
+--- !u!114 &672071682035791407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5575662016540852905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c116e67a839d742b28e8e9f1d9c726, type: 3}
+  m_Script: {fileID: 11500000, guid: caa056f7579d75648858d33a98533222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 0
-  fallingSpeed: 2
+  MoveSpeed: 0.5
