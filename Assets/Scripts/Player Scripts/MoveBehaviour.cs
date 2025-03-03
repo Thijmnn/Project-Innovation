@@ -51,10 +51,16 @@ private static Quaternion GyroToUnity(Quaternion q)
 // Update is called once per frame
 void Update()
 {
-    if (launched) { LeftToRight(); }
+     if (isOnPhone)
+     {
+        if (launched) { LeftToRight(); }
+        else { DragLaunch(); /*HoldLaunch();*/}
+     }
+     else
+     {
+        LeftToRight();
+     }
 
-    DragLaunch();
-    //HoldLaunch();
 }
 
 private void FixedUpdate()
