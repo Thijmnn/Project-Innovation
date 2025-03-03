@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  airResist: 0
   jetMult: 1
   height: 0
   money: 0
@@ -710,7 +711,6 @@ GameObject:
   - component: {fileID: 2130077645}
   - component: {fileID: 2130077643}
   - component: {fileID: 2130077644}
-  - component: {fileID: 2130077645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -732,6 +732,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jetMult: 0
+  moveSpeed: 0
+  speedCharge: 0
+  playerLauncher: {fileID: 2130077637}
+  isOnPhone: 0
+  startingPhoneRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &2130077639
 MonoBehaviour:
   m_ObjectHideFlags: 0
