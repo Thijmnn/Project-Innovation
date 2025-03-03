@@ -23,7 +23,6 @@ public class SpawnerScript : MonoBehaviour
         GameManager.gameStart -= GameStart;
     }
 
-
     private void GameStart(EnemyInfo e, float height)
     {
         enemy = e;

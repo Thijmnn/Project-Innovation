@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float speed;
+    public float airResist;
     public float jetMult = 1;
     public float height;
     public int money;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameStart();
+        
     }
     void GameStart()
     {
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
+            speed -= airResist * Time.deltaTime;
             height += speed * Time.deltaTime * jetMult;
             if((int)height == 20 && EnemyLevel < 1)
             {
@@ -56,19 +58,15 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         CoinScript.AddMoney += AddCoin;
-        MoveBehaviour.jetMulti += SpeedUp;
+        MoveBehaviour.beginGame += GameStart;
     }
     private void OnDisable()
     {
         CoinScript.AddMoney -= AddCoin;
-        MoveBehaviour.jetMulti -= SpeedUp;
+        MoveBehaviour.beginGame -= GameStart;
     }
     private void AddCoin(CoinInfo coin)
     {
         money += coin.ammount;
-    }
-    private void SpeedUp(float mult)
-    {
-        jetMult = mult;
     }
 }

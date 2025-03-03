@@ -455,11 +455,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  airResist: 2
+  jetMult: 1
   height: 0
+  money: 0
   EnemyLevel: 0
   enem:
-  - {fileID: 11400000, guid: 040f3a126a3074f49a5eb63234fda06b, type: 2}
-  - {fileID: 11400000, guid: f2317111673bca543950b29b35207bce, type: 2}
+  - {fileID: 11400000, guid: 863764c9f73b550438bf80f3a3bf0fc9, type: 2}
+  - {fileID: 11400000, guid: 863764c9f73b550438bf80f3a3bf0fc9, type: 2}
   scalingObj: {fileID: 1663500691}
 --- !u!4 &1366175643
 Transform:
@@ -753,10 +756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6cbae7f889143c4887f78677686e400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  speedCharge: 1
+  speed: 3
+  jetMult: 0
+  moveSpeed: 4
+  speedCharge: 5
   playerLauncher: {fileID: 1478897517}
   isOnPhone: 1
+  startingPhoneRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &2130077639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,7 +916,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2130077644
 MonoBehaviour:
   m_ObjectHideFlags: 0
