@@ -13,6 +13,31 @@ public class EnemyInfo : ScriptableObject
 [Serializable]
 public class Info
 {
-    public bool SpawnTop;
+public enum spawnPosition
+{
+    Up,
+    Down,
+    Left,
+    Right,
+    Sides,
+    SidesTop,
+    SidesBottom,
+/*    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight,
+    LeftTop,
+    RightTop,
+    LeftBottom,
+    RightBottom,*/
+};
+    public spawnPosition pos;
+    public bool warning;
+    public enum warningTypes
+    {
+        small,
+        big
+    };
+    public warningTypes warningType;
     public GameObject EnemyType;
 }

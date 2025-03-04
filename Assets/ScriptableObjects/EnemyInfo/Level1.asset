@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   EnemyList:
-  - SpawnTop: 1
+  - pos: 0
+    SpawnTop: 1
+    warning: 0
+    warningType: 0
     EnemyType: {fileID: 5575662016540852905, guid: 70cee6ba9f77f07448612a8ec83530cd, type: 3}
   minTimeBetweenSpawns: 5
   maxTimeBetweenSpawns: 10

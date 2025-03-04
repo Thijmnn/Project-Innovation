@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static Info;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class SpawnerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static event Action<bool, bool> moving;
+    public static event Action<Vector3, Info.spawnPosition, Info.warningTypes,bool> warning;
     float EnemyTimer = 10;
     float CoinTimer = 5;
     [SerializeField] EnemyInfo enemy;
@@ -19,6 +22,7 @@ public class SpawnerScript : MonoBehaviour
     Vector3 EnemSpawnPos;
     int spawnChosen;
     int chosenOrent;
+    bool leftSpawn;
     private void Start()
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
@@ -93,45 +97,91 @@ public class SpawnerScript : MonoBehaviour
                 }
                 int spawnChoice = UnityEngine.Random.Range(0, enemy.EnemyList.Count);
                 float check = enemy.EnemyList[spawnChoice].EnemyType.transform.localScale.x / 2;
-                float randomX = UnityEngine.Random.Range(transform.position.x - transform.localScale.x / 3, transform.position.x + transform.localScale.x / 3);
-                float randomY = UnityEngine.Random.Range(transform.position.y + transform.localScale.y / 3, transform.position.y + transform.localScale.y / 3);
-                for (int k = 0; k < prevPosEn.Count; k++)
-                {
-                    if (prevPosEn[k] > randomX - check && prevPosEn[k] < randomX + check)
-                    {
-                        randomX += 1;
-                    }
-                }
-                prevPosEn.Add(randomX);
-                int orient;
-                Vector3 spawnPos;
-                if (enemy.EnemyList[spawnChoice].SpawnTop)
-                {
-                    spawnPos = new Vector3(randomX, transform.position.y + transform.localScale.y / 2, transform.position.z);
-                    orient = 1;
-                }
-                else
-                {
-                    int rand = UnityEngine.Random.Range(1, 3);
-                    if (rand == 1)
-                    {
-                        spawnPos = new Vector3(transform.position.x + transform.localScale.x / 2, randomY, transform.position.z);
-                        orient = 1;
-                    }
-                    else
-                    {
-                        spawnPos = new Vector3(transform.position.x - transform.localScale.x / 2, randomY, transform.position.z);
-                        orient = -1;
-                    }
 
-                }
+
+                
+                Vector3 spawnPos;
+                int orient = 0;
+                int rand = UnityEngine.Random.Range(1, 3);
                 spawnChosen = spawnChoice;
-                EnemSpawnPos = spawnPos;
+                EnemSpawnPos = SetSpawnLocation(rand, orient);
                 chosenOrent = orient;
             }
             prevPosEn.Clear();
             EnemyTimer = UnityEngine.Random.Range(enemy.minTimeBetweenSpawns, enemy.maxTimeBetweenSpawns);
-            if(!FirstSpawn) yield return new WaitForSeconds(EnemyTimer);
+            if (enemy.EnemyList[spawnChosen].warning)
+            {
+                warning?.Invoke(EnemSpawnPos, enemy.EnemyList[spawnChosen].pos, enemy.EnemyList[spawnChosen].warningType,leftSpawn);
+            }
+            if (!FirstSpawn) yield return new WaitForSeconds(EnemyTimer);
         }
+    }
+
+    private Vector3 SetSpawnLocation(int rand, int orien)
+    {
+        Vector3 spawnPos = new Vector3(0, 0, 0);
+        float randomX = UnityEngine.Random.Range(transform.position.x - transform.localScale.x / 3, transform.position.x + transform.localScale.x / 3);
+        float randomY = UnityEngine.Random.Range(transform.position.y - transform.localScale.y / 3, transform.position.y + transform.localScale.y / 3);
+
+        orien = 1;
+        switch (enemy.EnemyList[spawnChosen].pos)
+        {
+            case Info.spawnPosition.Up :
+                randomX = UnityEngine.Random.Range(transform.position.x - transform.localScale.x / 3, transform.position.x + transform.localScale.x / 3);
+                spawnPos = new Vector3(randomX, transform.position.y + transform.localScale.y/2,0); break;
+
+            case Info.spawnPosition.Down:
+                orien = -1;
+                randomX = UnityEngine.Random.Range(transform.position.x - transform.localScale.x / 3, transform.position.x + transform.localScale.x / 3);
+                spawnPos = new Vector3(randomX, transform.position.y - transform.localScale.y / 2, 0); break;
+
+            case Info.spawnPosition.Left:
+                randomY = UnityEngine.Random.Range(transform.position.y - transform.localScale.y / 3, transform.position.y + transform.localScale.y / 3);
+                spawnPos = new Vector3(transform.position.x -transform.localScale.x/2, randomY, 0); break;
+
+            case Info.spawnPosition.Right:
+                randomY = UnityEngine.Random.Range(transform.position.y - transform.localScale.y / 3, transform.position.y + transform.localScale.y / 3);
+                spawnPos = new Vector3(transform.position.x + transform.localScale.x / 2, randomY, 0); break;
+
+            case Info.spawnPosition.Sides:
+                randomY = UnityEngine.Random.Range(transform.position.y - transform.localScale.y/3, transform.position.y + transform.localScale.y / 3);
+                if (rand == 1) { randomX = transform.position.x - transform.localScale.x / 2; orien = -1; leftSpawn = true; }
+                else if (rand == 2) { randomX = transform.position.x + transform.localScale.x / 2; orien = 1; leftSpawn = false; }
+                spawnPos = new Vector3(randomX, randomY); break;
+
+            case Info.spawnPosition.SidesTop:
+                if (rand == 1) { randomX = transform.position.x - transform.localScale.x / 2; orien = -1; leftSpawn = true; } 
+                else if (rand == 2) { randomX = transform.position.x + transform.localScale.x / 2; orien = 1; leftSpawn = false; } 
+                randomY = UnityEngine.Random.Range(transform.position.y, transform.position.y + transform.localScale.y / 3);
+                spawnPos = new Vector3(randomX, randomY, 0); break;
+
+            case Info.spawnPosition.SidesBottom:
+                if (rand == 1) { randomX = transform.position.x - transform.localScale.x / 2; orien = -1; leftSpawn = true; }
+                else if (rand == 2) { randomX = transform.position.x + transform.localScale.x / 2; orien = 1; leftSpawn = false; }
+                randomY = UnityEngine.Random.Range(transform.position.y, transform.position.y - transform.localScale.y / 3);
+                spawnPos = new Vector3(randomX, randomY, 0); break;
+
+            /*            case Info.spawnPosition.TopLeft: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.TopRight: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.BottomLeft: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.BottomRight: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.LeftTop: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.RightTop: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.LeftBottom: 
+                            spawnPos = new Vector3(0, 0, 0); break;
+                        case Info.spawnPosition.RightBottom: 
+                            spawnPos = new Vector3(0, 0, 0); break;*/
+            default:
+         break;
+        }
+        
+
+        return spawnPos;
     }
 }
