@@ -185,5 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c116e67a839d742b28e8e9f1d9c726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: 0
-  fallingSpeed: 2
+  orientation: 1
+  fallingSpeed: 10

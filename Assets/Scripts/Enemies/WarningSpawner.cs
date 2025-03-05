@@ -25,64 +25,73 @@ public class WarningSpawner : MonoBehaviour
         switch (spawnPos)
         {
             case Info.spawnPosition.Up:
-                warningPos = new Vector3(pos.x, transform.position.y + transform.localScale.y / 2, pos.z);
+                warningPos = new Vector3(pos.x, transform.position.y + transform.localScale.y / 3, pos.z - 1);
+                warningPos.z -= transform.position.x * 0.1f;
                 break;
 
             case Info.spawnPosition.Down:
-                warningPos = new Vector3(pos.x, transform.position.y - transform.localScale.y / 2, pos.z);
+                warningPos = new Vector3(pos.x, transform.position.y - transform.localScale.y / 3, pos.z - 1);
+                warningPos.z -= transform.position.x * 0.1f;
                 break;
 
             case Info.spawnPosition.Left:
-                warningPos = new Vector3(transform.position.x - transform.localScale.x / 2, pos.y, pos.z);
+                warningPos = new Vector3(transform.position.x - transform.localScale.x / 3, pos.y, pos.z - 1);
+                warningPos.z -= transform.position.y * 0.1f;
                 break;
 
             case Info.spawnPosition.Right:
-                warningPos = new Vector3(transform.position.x + transform.localScale.x / 2, pos.y, pos.z);
+                warningPos = new Vector3(transform.position.x + transform.localScale.x / 3, pos.y, pos.z - 1);
+                warningPos.z -= transform.position.y * 0.1f;
                 break;
 
             case Info.spawnPosition.Sides:
                 if (left)
                 {
-                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
                 else
                 {
-                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
+                warningPos.z -= transform.position.y * 0.1f;
                 break;
 
             case Info.spawnPosition.SidesTop:
                 if (left)
                 {
-                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
                 else
                 {
-                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
+                warningPos.z -= transform.position.y * 0.1f;
                 break;
 
             case Info.spawnPosition.SidesBottom:
                 if (left)
                 {
-                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x - transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
                 else
                 {
-                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 2, pos.y, pos.z);
+                    warningPos = new Vector3(transform.position.x + transform.localScale.x / 3, pos.y, pos.z - 1);
                 }
+                warningPos.z -= transform.position.y * 0.1f;
                 break;
         }
         switch (warn)
         {
             case Info.warningTypes.small:
                 warningType = warningTypes[0];
+                warningPos.z -= 5;
                 break;
             case Info.warningTypes.big:
                 warningType = warningTypes[1];
                 break;
 
         }
+        
         GameObject warnSpawn = Instantiate(warningType, warningPos, Quaternion.identity);
     }
 }

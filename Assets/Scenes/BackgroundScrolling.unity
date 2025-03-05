@@ -225,7 +225,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 13, y: 27.256, z: 0}
+  m_LocalScale: {x: 12.67526, y: 27.256, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108ef7d27342636439b90457ad0b48e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyTimer: 10
   enemy: {fileID: 0}
 --- !u!114 &31439190
 MonoBehaviour:
@@ -369,8 +370,8 @@ GameObject:
   - component: {fileID: 745545963}
   - component: {fileID: 745545962}
   - component: {fileID: 745545961}
-  - component: {fileID: 745545959}
   - component: {fileID: 745545965}
+  - component: {fileID: 745545959}
   m_Layer: 0
   m_Name: Spawner (1)
   m_TagString: Untagged
@@ -476,7 +477,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.5, y: 17, z: 0}
+  m_LocalScale: {x: 9, y: 16, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
