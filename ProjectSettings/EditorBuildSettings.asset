@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LaunchTest.unity
     guid: 32524eb1230d2e24a857a3cf0ccf07a6
   - enabled: 1
-    path: Assets/Scenes/MicInputScene.unity
-    guid: 5c0ae71237793d149ba2e0abcd020eb4
+    path: Assets/Scenes/StartScreen.unity
+    guid: b5c879b65c9724ce587e35c7fe358051
+  - enabled: 1
+    path: Assets/Scenes/BackgroundScrolling.unity
+    guid: 2ff4f10342682954babf5ae4219f9085
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 24082416c0dccf847b19cee0943839d5, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 03ae3d9037b96fe43bdbc17c5a9d80af, type: 2}

@@ -872,7 +872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jetMult: 0
-  moveSpeed: 0
+  moveSpeed: 1
   speedCharge: 0
   playerLauncher: {fileID: 2130077637}
   isOnPhone: 0

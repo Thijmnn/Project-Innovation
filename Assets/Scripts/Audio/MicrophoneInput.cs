@@ -45,10 +45,9 @@ public class MicrophoneInput : MonoBehaviour
 
         if (Mathf.RoundToInt(GetLoudnessFromAudioClip(_audioSource.timeSamples, _audioSource.clip) * loudnessSensibility) > loudnessThreshold)
         {
-            /*audioInputText.text = Mathf.RoundToInt(GetLoudnessFromAudioClip(_audioSource.timeSamples, _audioSource.clip) * loudnessSensibility).ToString();*/
             blowCharge++;
         }
-        freakBird.transform.localScale = new Vector3(blowCharge, blowCharge, freakBird.transform.localScale.z);
+        freakBird.transform.localScale = new Vector3(blowCharge/10, blowCharge/10, freakBird.transform.localScale.z);
         print(Mathf.RoundToInt(GetLoudnessFromAudioClip(_audioSource.timeSamples, _audioSource.clip) * loudnessSensibility).ToString());
     }
 
