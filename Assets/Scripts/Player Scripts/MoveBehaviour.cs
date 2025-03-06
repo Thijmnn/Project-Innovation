@@ -54,7 +54,7 @@ void Update()
      if (isOnPhone)
      {
         if (launched) { LeftToRight(); }
-        else { DragLaunch(); /*HoldLaunch();*/}
+        else { /*DragLaunch();*/ HoldLaunch(); }
      }
      else
      {
