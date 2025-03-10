@@ -13,11 +13,22 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   EnemyList:
+<<<<<<< Updated upstream
   - EnemyType: {fileID: 5575662016540852905, guid: 70cee6ba9f77f07448612a8ec83530cd, type: 3}
     spawnChanceOutOf100: 100
     pos: 0
     warning: 1
     warningType: 0
+=======
+  - pos: 2
+    warning: 0
+    warningType: 0
+    EnemyType: {fileID: 7592038715168387254, guid: 4db37dc1deee743338f3b88fcd4542bd, type: 3}
+  - pos: 2
+    warning: 0
+    warningType: 0
+    EnemyType: {fileID: 564352249502045713, guid: 61a784ef5f7f64ddba53e270d21a8860, type: 3}
+>>>>>>> Stashed changes
   minTimeBetweenSpawns: 5
   maxTimeBetweenSpawns: 10
   MinAmmountPerSpawn: 2
