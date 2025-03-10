@@ -37,7 +37,7 @@ void Start()
     startingPhoneRotation = new Vector3(90, 0, 0);
     offset = Quaternion.Inverse(GyroToUnity(Input.gyro.attitude));
     cam = Camera.main;
-    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
+    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, -0.5f);
     rb = GetComponent<Rigidbody2D>();
     rb.gravityScale = 0f;
     transform.position = playerLauncher.transform.position;

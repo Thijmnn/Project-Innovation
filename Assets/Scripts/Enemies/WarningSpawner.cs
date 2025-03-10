@@ -7,7 +7,7 @@ public class WarningSpawner : MonoBehaviour
     [SerializeField] List<GameObject> warningTypes;
     private void Start()
     {
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, 0.1f);
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, -0.5f);
     }
     private void OnEnable()
     {
