@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 0}
+  moveBehaviour: {fileID: 8272618211951960685}
   shootBehviour: {fileID: 0}
 --- !u!114 &8272618211951960685
 MonoBehaviour:
@@ -194,6 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa056f7579d75648858d33a98533222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: 0
-  MoveSpeed: 0
-  fallSpeed: 0
+  orientation: 1
+  MoveSpeed: 1
+  fallSpeed: 1
