@@ -735,11 +735,13 @@ MonoBehaviour:
   jetMult: 1
   height: 0
   money: 0
-  maxLevel: 1
+  maxLevel: 3
   EnemyLevel: 0
   enem:
-  - {fileID: 11400000, guid: 040f3a126a3074f49a5eb63234fda06b, type: 2}
-  - {fileID: 11400000, guid: f2317111673bca543950b29b35207bce, type: 2}
+  - {fileID: 11400000, guid: 36fca423b6a0f4ef6832c2a5786c8b04, type: 2}
+  - {fileID: 11400000, guid: b658995ef7e134d05b8ce258958eb28c, type: 2}
+  - {fileID: 11400000, guid: ed564d54a928c435c849bacd8effb97e, type: 2}
+  - {fileID: 11400000, guid: a2878c0b8749f46bd80d84a1b4db2f82, type: 2}
   coins:
   - {fileID: 11400000, guid: 3ede46f60dc8a474fa78d721ab2124d0, type: 2}
   - {fileID: 11400000, guid: c934b6a036c3fbd4f9ce3367af8085b4, type: 2}
