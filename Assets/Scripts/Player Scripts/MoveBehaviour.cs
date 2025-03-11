@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class MoveBehaviour : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class MoveBehaviour : MonoBehaviour
     private Rigidbody2D rb;
 
     bool launched;
-
+    bool launching;
+    
     Camera cam;
 
     [SerializeField] bool isOnPhone;
@@ -53,14 +55,19 @@ void Update()
 {
      if (isOnPhone)
      {
-        if (launched) { LeftToRight(); }
-        else { /*DragLaunch();*/ HoldLaunch(); }
+        if (MicrophoneInput.instance != null) {
+            if (MicrophoneInput.instance.blown == true)
+            {
+                if (launched) { LeftToRight();  }
+                else {  DragLaunch(); /*HoldLaunch();*/ }
+            }
+        } 
      }
      else
      {
-        LeftToRight();
+         beginGame?.Invoke();
+         LeftToRight();
      }
-
 }
 
 private void FixedUpdate()
@@ -95,46 +102,31 @@ void LeftToRight()
         transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
     }
 }
-    private void HoldLaunch()
-    {
-        //HOLDING DOWN ON THE SCREEN
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary)
-        {
-            launchSpeed += speedCharge;
-            //JETPACK
-        }
-        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
-        {
-            LaunchPlayer(launchSpeed);
-            launched = true;
-            launchSpeed = 0;
-
-        }
-    }
+   
     private void DragLaunch() { 
         //DRAGGING DOWN
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
         {
             Vector3 fingerPos = cam.ScreenToWorldPoint(Input.touches[0].position);
-            if (fingerPos.y <= playerLauncher.transform.position.y)
+            if (fingerPos.y < playerLauncher.transform.position.y)
             {
                 Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y,0));
                 transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);  
-            }
+                launching = true;
+            } 
             else
             {
                 transform.position = playerLauncher.transform.position;
+                launching = false;
             }
 
         }
-        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
+        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended && launching)
         {
             float dist = transform.position.y - playerLauncher.transform.position.y;
             LaunchPlayer(-dist * speedCharge);
-            launched = true;
             launchSpeed = 0;
-
-            //Temp
+            launched = true;
             transform.position = playerLauncher.transform.position;
         }
     }
@@ -145,7 +137,25 @@ void LeftToRight()
         GameManager.Instance.speed = speedCharge;
         beginGame?.Invoke();
         print(speedCharge);
-        
+        MicrophoneInput.instance.RecordInGame();
+        launched = true;
     }
-    
+
+
+    private void HoldLaunch()
+    {
+        //HOLDING DOWN ON THE SCREEN
+        if (Input.GetMouseButtonDown(0))
+        {
+            launchSpeed += speedCharge;
+            
+            //JETPACK
+        }
+        else
+        {
+            LaunchPlayer(launchSpeed);
+            launchSpeed = 0;
+
+        }
+    }
 }

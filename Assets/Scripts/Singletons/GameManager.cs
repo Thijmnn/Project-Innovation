@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameStart();
+
     }
     void GameStart()
     {
@@ -50,7 +50,15 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
-            speed -= airResist * Time.deltaTime;
+
+            if(MicrophoneInput.instance.blowCharge <= 0)
+            {
+                speed -= airResist * Time.deltaTime;
+            }
+            else
+            {
+                MicrophoneInput.instance.blowCharge -= 0.01f;
+            }
             height += speed * Time.deltaTime * jetMult;
             if (height > 1 && (int)height%20 == 0 && EnemyLevel < maxLevel && !levelUp)
             {

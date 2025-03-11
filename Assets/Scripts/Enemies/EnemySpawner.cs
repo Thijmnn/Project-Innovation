@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 using static Info;
@@ -42,7 +42,7 @@ public class SpawnerScript : MonoBehaviour
     {
         GameManager.gameStart += GameStart;
     }
-    private void DisEnable()
+    private void OnDisable()
     {
         GameManager.gameStart -= GameStart;
     }
