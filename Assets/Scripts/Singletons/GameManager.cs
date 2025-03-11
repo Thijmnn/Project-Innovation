@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public float height;
     public int money;
     [SerializeField] int maxLevel;
-    bool gameOn;
+    public bool gameOn;
     [SerializeField] int EnemyLevel = 0;
     public List<EnemyInfo> enem;
     public List<CoinInfo> coins;
