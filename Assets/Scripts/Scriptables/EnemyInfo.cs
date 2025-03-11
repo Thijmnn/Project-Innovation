@@ -53,4 +53,5 @@ public enum spawnPosition
         big
     };
     public warningTypes warningType;
+
 }
