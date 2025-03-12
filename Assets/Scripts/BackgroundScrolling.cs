@@ -227,13 +227,11 @@ public class BackgroundScrolling : MonoBehaviour
     }
     void Layer2(bool layerSwitch, Renderer sp, List<Material> materials, int layer)
     {
-        print(layerSwitch);
         if (layerSwitch && bgLevel == bgType.Sky)
         {
             if (layer == 2)
             {
                 layerLevelL2 += 1;
-                print(layerLevelL2);
             }
             sp.material = (materials[layerLevelL2]);
 

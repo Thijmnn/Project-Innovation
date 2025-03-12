@@ -54,24 +54,13 @@ public class GameManager : MonoBehaviour
             speed -= airResist * Time.deltaTime;
             height += speed * Time.deltaTime * jetMult;
 
-            if(height > levelUpInterval && EnemyLevel < 1)
+            if(height > levelUpInterval * (EnemyLevel+1) && EnemyLevel < maxLevel-1)
             {
-
                 EnemyLevel++;
+                print(EnemyLevel);
                 gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
-            if (height > levelUpInterval*2 && EnemyLevel < 2)
-            {
-
-                EnemyLevel++;
-                gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
-            }
-            if (height > levelUpInterval*3 && EnemyLevel < 3)
-            {
-
-                EnemyLevel++;
-                gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
-            }
+ 
         }
     }
 
