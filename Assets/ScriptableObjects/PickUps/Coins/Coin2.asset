@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinList:
   - ammountPerSpawn: 1
-    CoinType: {fileID: 8068364345413678557, guid: a0ead18cf069d46fda36f90fc995f509, type: 3}
+    CoinType: {fileID: 8068364345413678557, guid: 47875e39ebb2c1249bd701a15f3595ab, type: 3}
     ammount: 1
   minTimeBetweenSpawns: 3
   maxTimeBetweenSpawns: 5

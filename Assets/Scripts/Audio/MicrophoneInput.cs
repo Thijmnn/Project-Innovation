@@ -17,7 +17,6 @@ public class MicrophoneInput : MonoBehaviour
     [SerializeField] GameObject freakBird;
     [SerializeField] Animator birdExpand;
 
-    [SerializeField] TextMeshProUGUI audioInputText;
     [SerializeField] private Button startButton;
 
     [HeaderAttribute("Audio")]
@@ -27,7 +26,7 @@ public class MicrophoneInput : MonoBehaviour
     [SerializeField] private int loudnessThreshold = 800;
 
 
-    [SerializeField,HideInInspector] public float maxCharge;
+    [SerializeField] public float maxCharge;
 
     private float _maxCharge;
 
@@ -66,7 +65,6 @@ public class MicrophoneInput : MonoBehaviour
     {
         if (_startAudioSource.isPlaying)
         {
-            audioInputText.text = blowCharge.ToString();
             AnimatePlayer();
             GetMaxCharge(maxCharge, loudnessThreshold);
         }
@@ -79,7 +77,6 @@ public class MicrophoneInput : MonoBehaviour
         else if (_audioSource.isPlaying)
         {
             AnimatePlayer();
-            audioInputText.text = blowCharge.ToString();
             RechargeOstrich(loudnessThreshold);
         }
     }

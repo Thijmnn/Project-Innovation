@@ -118,7 +118,8 @@ void LeftToRight()
                 Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y,0));
                 transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);  
                 launching = true;
-                stretch.Play();
+                if(!stretch.isPlaying) { stretch.Play(); }
+                
             } 
             else
             {
