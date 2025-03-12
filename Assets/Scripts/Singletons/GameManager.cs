@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameStart();
+        
     }
     void GameStart()
     {
@@ -68,11 +68,13 @@ public class GameManager : MonoBehaviour
     {
         CoinScript.AddMoney += AddCoin;
         MoveBehaviour.beginGame += GameStart;
+        UI_Script.startGame += GameStart;
     }
     private void OnDisable()
     {
         CoinScript.AddMoney -= AddCoin;
         MoveBehaviour.beginGame -= GameStart;
+        UI_Script.startGame -= GameStart;
     }
     private void AddCoin(CoinInfo coin,int coinType)
     {
