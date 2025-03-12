@@ -23,7 +23,6 @@ public class CoinScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Col");
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
