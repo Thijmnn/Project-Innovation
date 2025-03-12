@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 0}
+  moveBehaviour: {fileID: 1172636976947766619}
   shootBehviour: {fileID: 0}
 --- !u!114 &1172636976947766619
 MonoBehaviour:
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 0
-  MoveSpeed: 0
-  fallSpeed: 0
+  MoveSpeed: 1
+  fallSpeed: 1
 --- !u!65 &597458547092616617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,8 +174,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.4999995, y: 1.0292587, z: 0.2}
   m_Center: {x: 0, y: -0.18977737, z: 0}
-  MoveSpeed: 1
-  fallSpeed: 2
 --- !u!50 &-2604122130661236928
 Rigidbody2D:
   serializedVersion: 4
