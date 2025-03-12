@@ -21,6 +21,7 @@ public class UI_Script : MonoBehaviour
     }
     public void CloseShop()
     {
-        currentUI.SetActive(false);
+        shop.SetActive(false);
+        currentUI = null;
     }
 }

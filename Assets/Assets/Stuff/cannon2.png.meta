@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: ee779d9976b7f4fb898a55dcc0ff064d
+guid: 03ffef422f4031e458c03020c3f49b06
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: cannon2_0
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 96
+        width: 541
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2055c772ad8dd49bc5f5a0eca06079
+      internalID: 704650140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cannon2_1
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 97
+        width: 546
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94aac2d898d897c44a93259f65620265
+      internalID: 1626482782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cannon2_2
+      rect:
+        serializedVersion: 2
+        x: 1329
+        y: 103
+        width: 548
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10e27e0407c1cc43a6e03f1b4408187
+      internalID: -1622240210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cannon2_3
+      rect:
+        serializedVersion: 2
+        x: 1970
+        y: 107
+        width: 528
+        height: 520
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a9509cea82556e47ad302fe5f296678
+      internalID: -129153831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cannon2_4
+      rect:
+        serializedVersion: 2
+        x: 2613
+        y: 109
+        width: 548
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f6eb81a113fb044a7ff686dc4706fa
+      internalID: 635173321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cannon2_5
+      rect:
+        serializedVersion: 2
+        x: 3231
+        y: 124
+        width: 541
+        height: 658
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97cc1c507b95d247a6703c1fcc98b1f
+      internalID: -2043691574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +258,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cannon2_0: 704650140
+      cannon2_1: 1626482782
+      cannon2_2: -1622240210
+      cannon2_3: -129153831
+      cannon2_4: 635173321
+      cannon2_5: -2043691574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
