@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1019069531460106202}
   - component: {fileID: 8933510619872456986}
-  - component: {fileID: 1951808372769630016}
   - component: {fileID: 1361708237083989130}
-  - component: {fileID: 8052670137888759561}
   - component: {fileID: 8101951963337535388}
+  - component: {fileID: 3535252961966131718}
+  - component: {fileID: 5137914357507262757}
   m_Layer: 0
   m_Name: spearunity
   m_TagString: Untagged
@@ -88,7 +88,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1951808372769630016
+--- !u!114 &1361708237083989130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592038715168387254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa056f7579d75648858d33a98533222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: 0
+  MoveSpeed: 1
+  fallSpeed: 1
+--- !u!114 &8101951963337535388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592038715168387254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveBehaviour: {fileID: 1361708237083989130}
+  shootBehviour: {fileID: 0}
+--- !u!61 &3535252961966131718
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +149,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.00925827}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,24 +160,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.1, y: 0.95}
+  m_Size: {x: 7.1, y: 0.56114197}
   m_EdgeRadius: 0
---- !u!114 &1361708237083989130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592038715168387254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa056f7579d75648858d33a98533222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: 0
-  MoveSpeed: 1
-  fallSpeed: 1
---- !u!50 &8052670137888759561
+--- !u!50 &5137914357507262757
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -175,17 +189,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8101951963337535388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592038715168387254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 1361708237083989130}
-  shootBehviour: {fileID: 0}

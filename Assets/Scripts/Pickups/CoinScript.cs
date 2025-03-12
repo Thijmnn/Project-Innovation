@@ -25,7 +25,6 @@ public class CoinScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Col");
         if (collision.gameObject.CompareTag("Player"))
         {
             pickUpCoin.Play();

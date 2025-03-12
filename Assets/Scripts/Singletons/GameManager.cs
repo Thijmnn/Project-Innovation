@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int levelUpInterval;
     public float speed;
     public float airResist;
     public float jetMult = 1;
@@ -62,11 +63,11 @@ public class GameManager : MonoBehaviour
                 MicrophoneInput.instance.blowCharge -= 0.01f;
             }
             height += speed * Time.deltaTime * jetMult;
-            if (height > 1 && (int)height%20 == 0 && EnemyLevel < maxLevel && !levelUp)
+
+            if(height > levelUpInterval * (EnemyLevel+1) && EnemyLevel < maxLevel-1)
             {
-                levelUp = true;
                 EnemyLevel++;
-                Invoke("NextStage",2);
+                print(EnemyLevel);
                 gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
 
@@ -81,21 +82,18 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    void NextStage()
-    {
-        levelUp = false;
-    }
 
     private void OnEnable()
     {
         CoinScript.AddMoney += AddCoin;
         MoveBehaviour.beginGame += GameStart;
-        
+        UI_Script.startGame += GameStart;
     }
     private void OnDisable()
     {
         CoinScript.AddMoney -= AddCoin;
         MoveBehaviour.beginGame -= GameStart;
+        UI_Script.startGame -= GameStart;
     }
     private void AddCoin(CoinInfo coin,int coinType)
     {

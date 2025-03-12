@@ -176,7 +176,6 @@ public class SpawnerScript : MonoBehaviour
                 randomX = UnityEngine.Random.Range(transform.position.x - transform.localScale.x / 3, transform.position.x + transform.localScale.x / 3);
                 for (int i = 0; i < prevSpawnPos.Count; i++)
                 {
-                    print(spawnNumb);
                     if (randomX >= prevSpawnPos[i] - enemy.EnemyList[prevSpawnChose].EnemyType.transform.localScale.x && randomX <= prevSpawnPos[i] + enemy.EnemyList[prevSpawnChose].EnemyType.transform.localScale.x)
                     {
                         if (randomX > transform.position.x) { randomX += enemy.EnemyList[prevSpawnChose].EnemyType.transform.localScale.x; i = 0; }
