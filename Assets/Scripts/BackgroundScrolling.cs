@@ -121,13 +121,16 @@ public class BackgroundScrolling : MonoBehaviour
     }
     void Update()
     {
-        Layer1Update();
-        LayerUpdate(l2, _materialL2, switchl2, speedScaleL2, scaleL2, 2);
-        LayerUpdate(l3, _materialL3, switchl3, speedScaleL3, scaleL3, 3);
-        LayerUpdate(l4, _materialL4, switchl4, speedScaleL4, scaleL4, 4);
-        LayerUpdate(l5, _materialL5, switchl5, speedScaleL5, scaleL5, 5);
-        LayerUpdate(l6, _materialL6, switchl6, speedScaleL6, scaleL6, 6);
-        LayerUpdate(l7, _materialL7, switchl7, speedScaleL7, scaleL7, 7);
+        if (GameManager.Instance.gameOn)
+        {
+            Layer1Update();
+            LayerUpdate(l2, _materialL2, switchl2, speedScaleL2, scaleL2, 2);
+            LayerUpdate(l3, _materialL3, switchl3, speedScaleL3, scaleL3, 3);
+            LayerUpdate(l4, _materialL4, switchl4, speedScaleL4, scaleL4, 4);
+            LayerUpdate(l5, _materialL5, switchl5, speedScaleL5, scaleL5, 5);
+            LayerUpdate(l6, _materialL6, switchl6, speedScaleL6, scaleL6, 6);
+            LayerUpdate(l7, _materialL7, switchl7, speedScaleL7, scaleL7, 7);
+        }
     }
 
     void Layer1Update()

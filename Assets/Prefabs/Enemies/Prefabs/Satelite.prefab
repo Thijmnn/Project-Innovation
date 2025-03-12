@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8579671926040557797}
   - component: {fileID: 5107356650694331300}
   - component: {fileID: 2793074995748860932}
-  - component: {fileID: 654706981273686297}
   - component: {fileID: 7529308404803166596}
   - component: {fileID: 8577384602726483789}
   - component: {fileID: 8589902048987448847}
@@ -111,19 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &654706981273686297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346634648607983776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d5f9273006ffe45a55df86d8f1203e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: 0
 --- !u!114 &7529308404803166596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 0
-  fallingSpeed: 2
+  fallingSpeed: 4
 --- !u!70 &8589902048987448847
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

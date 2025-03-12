@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8626496678931268053}
   - component: {fileID: 7794831171154105943}
   - component: {fileID: 899444498425124850}
-  - component: {fileID: 8989295720183901992}
   - component: {fileID: 5608094169764898310}
   - component: {fileID: 1172636976947766619}
   - component: {fileID: 597458547092616617}
@@ -33,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -272.19397, y: -49.467167, z: 0}
-  m_LocalScale: {x: 0.27519, y: 0.27519, z: 0.27519}
+  m_LocalScale: {x: -0.27519, y: 0.27519, z: 0.27519}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,19 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8989295720183901992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4340733315921845818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d5f9273006ffe45a55df86d8f1203e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: 0
 --- !u!114 &5608094169764898310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 0
-  MoveSpeed: 1
+  MoveSpeed: 2
   fallSpeed: 1
 --- !u!65 &597458547092616617
 BoxCollider:

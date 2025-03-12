@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1492146711610415671}
   - component: {fileID: 3458938133521470531}
   - component: {fileID: 4705541726736618680}
-  - component: {fileID: 5398554019044711807}
   - component: {fileID: 4057941349272889228}
+  - component: {fileID: 5398554019044711807}
   - component: {fileID: 917378605445849482}
   - component: {fileID: -7269816379993655603}
   m_Layer: 0
@@ -110,6 +110,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4057941349272889228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4983200431179213566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveBehaviour: {fileID: 5398554019044711807}
+  shootBehviour: {fileID: 0}
 --- !u!114 &5398554019044711807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,20 +139,6 @@ MonoBehaviour:
   orientation: 0
   MoveSpeed: 1
   riseSpeed: 5
---- !u!114 &4057941349272889228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4983200431179213566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 0}
-  shootBehviour: {fileID: 0}
 --- !u!70 &917378605445849482
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
