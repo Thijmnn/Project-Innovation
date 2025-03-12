@@ -17,7 +17,7 @@ public class MicrophoneInput : MonoBehaviour
     [SerializeField] GameObject freakBird;
     [SerializeField] Animator birdExpand;
 
-    [SerializeField] private Button startButton;
+    [SerializeField] private GameObject startButton;
 
     [HeaderAttribute("Audio")]
     [SerializeField] AudioSource _audioSource;
@@ -183,6 +183,6 @@ public class MicrophoneInput : MonoBehaviour
         blown = false;
         once = false;
         maxCharge = _maxCharge;
-        startButton.gameObject.SetActive(true);
+        startButton.SetActive(true);
     }
 }

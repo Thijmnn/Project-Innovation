@@ -166,7 +166,7 @@ MonoBehaviour:
   speed: 5
   jetMult: 0
   moveSpeed: 3
-  speedCharge: 10
+  speedCharge: 2
   playerLauncher: {fileID: 0}
   isOnPhone: 1
   startingPhoneRotation: {x: 0, y: 0, z: 0}
