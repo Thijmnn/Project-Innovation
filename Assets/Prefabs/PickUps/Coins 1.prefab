@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2466465959585006500}
   - component: {fileID: 6199441949478434716}
   - component: {fileID: 1382967699930193258}
-  - component: {fileID: -8374898026948881258}
+  - component: {fileID: 6944151739184632751}
   m_Layer: 0
-  m_Name: Coins
+  m_Name: Coins 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  coin: {fileID: 11400000, guid: c934b6a036c3fbd4f9ce3367af8085b4, type: 2}
+  coin: {fileID: 11400000, guid: 3ede46f60dc8a474fa78d721ab2124d0, type: 2}
   coinType: 0
-  pickUpCoin: {fileID: -8374898026948881258}
+  pickUpCoin: {fileID: 6944151739184632751}
 --- !u!58 &6199441949478434716
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!82 &-8374898026948881258
+--- !u!82 &6944151739184632751
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

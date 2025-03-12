@@ -16,4 +16,13 @@ public class EnemyMoveBehaviour : MonoBehaviour
         rb.gravityScale = 0;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
+        if(player != null)
+        {
+            GameManager.Instance.speed -= GameManager.Instance.speed / 5;
+        }
+
+    }
 }

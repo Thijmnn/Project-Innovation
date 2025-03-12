@@ -16,8 +16,11 @@ public class GameManager : MonoBehaviour
     public List<EnemyInfo> enem;
     public List<CoinInfo> coins;
     public static event Action<EnemyInfo,CoinInfo,float> gameStart;
+    public static event Action gameRestart;
     public Transform scalingObj;
     [SerializeField]bool levelUp = false;
+
+    [SerializeField] AudioSource deathSound;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -50,7 +53,6 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
-
             if(MicrophoneInput.instance.blowCharge <= 0)
             {
                 speed -= airResist * Time.deltaTime;
@@ -67,6 +69,16 @@ public class GameManager : MonoBehaviour
                 Invoke("NextStage",2);
                 gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
+
+            if(speed <= -1)
+            {
+                gameRestart.Invoke();
+                levelUp = false;
+                EnemyLevel = 0;
+                gameOn = false;
+                height = 0;
+                speed = 0;  
+            }
         }
     }
     void NextStage()
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         CoinScript.AddMoney += AddCoin;
         MoveBehaviour.beginGame += GameStart;
+        
     }
     private void OnDisable()
     {

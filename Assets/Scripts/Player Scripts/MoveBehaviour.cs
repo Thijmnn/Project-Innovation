@@ -33,6 +33,9 @@ public class MoveBehaviour : MonoBehaviour
 
     [SerializeField] bool isOnPhone;
     public Vector3 startingPhoneRotation;
+
+    [SerializeField] AudioSource stretch;
+    [SerializeField] AudioSource fling; 
 // Start is called before the first frame update
 void Start()
 {
@@ -43,6 +46,8 @@ void Start()
     rb = GetComponent<Rigidbody2D>();
     rb.gravityScale = 0f;
     transform.position = playerLauncher.transform.position;
+
+        GameManager.gameRestart += Reset;
 }
 
 private static Quaternion GyroToUnity(Quaternion q)
@@ -113,9 +118,11 @@ void LeftToRight()
                 Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y,0));
                 transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);  
                 launching = true;
+                stretch.Play();
             } 
             else
             {
+                stretch.Stop();
                 transform.position = playerLauncher.transform.position;
                 launching = false;
             }
@@ -123,6 +130,8 @@ void LeftToRight()
         }
         else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended && launching)
         {
+            stretch.Stop();
+            fling.Play();
             float dist = transform.position.y - playerLauncher.transform.position.y;
             LaunchPlayer(-dist * speedCharge);
             launchSpeed = 0;
@@ -157,5 +166,12 @@ void LeftToRight()
             launchSpeed = 0;
 
         }
+    }
+
+    public void Reset()
+    {
+        transform.position = playerLauncher.transform.position;
+        rb.velocity = Vector3.zero;
+        launched = false;
     }
 }

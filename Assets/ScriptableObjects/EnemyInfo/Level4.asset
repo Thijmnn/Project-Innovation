@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Level4
   m_EditorClassIdentifier: 
   EnemyList:
-  - pos: 3
-    warning: 0
+  - EnemyType: {fileID: 4340733315921845818, guid: 9756e08003fcb4f74aec9d6034980236, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 3
+    warning: 1
     warningType: 0
-    EnemyType: {fileID: 4340733315921845818, guid: 9756e08003fcb4f74aec9d6034980236, type: 3}
-  - pos: 0
-    warning: 0
+  - EnemyType: {fileID: 2346634648607983776, guid: bc36f0509a2ce426c86faf66218e391f, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 0
+    warning: 1
     warningType: 0
-    EnemyType: {fileID: 2346634648607983776, guid: bc36f0509a2ce426c86faf66218e391f, type: 3}
-  - pos: 2
-    warning: 0
+  - EnemyType: {fileID: 1436219587217336003, guid: f521aa9d344f44cfca04688901860044, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 2
+    warning: 1
     warningType: 0
-    EnemyType: {fileID: 1436219587217336003, guid: f521aa9d344f44cfca04688901860044, type: 3}
   minTimeBetweenSpawns: 3
   maxTimeBetweenSpawns: 5
-  AmmountPerSpawn: 3
+  MinAmmountPerSpawn: 2
+  MaxAmmountPerSpawn: 3
+  spawnChanceList: 0000000000000000000000000000000000000000210000002100000021000000000000002100000021000000210000000000000021000000210000002100000000000000210000002100000021000000000000002100000021000000210000000000000021000000210000002100000000000000210000002100000021000000

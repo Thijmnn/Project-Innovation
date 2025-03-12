@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4672949762799150569}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,10 +166,12 @@ MonoBehaviour:
   speed: 5
   jetMult: 0
   moveSpeed: 3
-  speedCharge: 1
+  speedCharge: 10
   playerLauncher: {fileID: 0}
   isOnPhone: 1
   startingPhoneRotation: {x: 0, y: 0, z: 0}
+  stretch: {fileID: 0}
+  fling: {fileID: 0}
 --- !u!50 &102330653438520739
 Rigidbody2D:
   serializedVersion: 4
@@ -196,7 +198,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8275897409148132802
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,43 +6,49 @@ using System.Linq;
 using TMPro;
 using UnityEngine.Audio;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 
 public class MicrophoneInput : MonoBehaviour
 {
     public static MicrophoneInput instance { get; private set; }
 
+    [HeaderAttribute("References")]
     [SerializeField] GameObject freakBird;
     [SerializeField] Animator birdExpand;
 
     [SerializeField] TextMeshProUGUI audioInputText;
+    [SerializeField] private Button startButton;
 
+    [HeaderAttribute("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioSource _startAudioSource;
-
     [SerializeField] private AudioMixerGroup _micMix;
-
-    [SerializeField] private int startRecordingLength;
-
     [SerializeField] private int loudnessThreshold = 800;
 
-    [SerializeField] private float maxCharge;
 
-    private float loudnessSensibility = 1000;
+    [SerializeField,HideInInspector] public float maxCharge;
 
-    private float clipLength;
-
-    int sampleWindow = 64;
-    string microphoneName;
+    private float _maxCharge;
 
     public float blowCharge;
 
+    private int startRecordingLength = 4;
+
+    private float loudnessSensibility = 1000;
+
+    int sampleWindow = 64;
+    
+    string microphoneName;
+
+    
 
     [SerializeField, HideInInspector] public bool blown;
 
     public bool once;
     void Start()
     {
+        GameManager.gameRestart += Reset;
         if (instance == null)
         {
             instance = this;
@@ -54,7 +60,6 @@ public class MicrophoneInput : MonoBehaviour
         microphoneName = Microphone.devices[0].ToString();
         _audioSource.outputAudioMixerGroup = _micMix;
         _startAudioSource.outputAudioMixerGroup = _micMix;
-        clipLength = startRecordingLength;
     }
 
     void Update()
@@ -67,6 +72,7 @@ public class MicrophoneInput : MonoBehaviour
         }
         else if(!_startAudioSource.isPlaying && !_audioSource.isPlaying && once)
         {
+            _maxCharge = maxCharge;
             SetMaxCharge(blowCharge);
             blown = true;
         }
@@ -165,7 +171,21 @@ public class MicrophoneInput : MonoBehaviour
                     break;
                 }
             }
+            else if(blowCharge == 0)
+            {
+                anim.Play("Base Layer.OstrichExpand", 0, 0f);
+            }
         }
     }
 
+    public void Reset()
+    {
+        birdExpand.Play("Base Layer.OstrichExpand",0,0f);
+        blowCharge = 0f;
+        _audioSource.Stop();
+        blown = false;
+        once = false;
+        maxCharge = _maxCharge;
+        startButton.gameObject.SetActive(true);
+    }
 }
