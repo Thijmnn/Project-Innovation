@@ -89,7 +89,9 @@ public class WarningSpawner : MonoBehaviour
             case Info.warningTypes.big:
                 warningType = warningTypes[1];
                 break;
-
+            case Info.warningTypes.cloud:
+                warningType = warningTypes[2];
+                break;
         }
         
         GameObject warnSpawn = Instantiate(warningType, warningPos, Quaternion.identity);
