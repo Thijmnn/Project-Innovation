@@ -27,8 +27,8 @@ MonoBehaviour:
     spawnChanceOutOf100: 33
     pos: 2
     warning: 0
-    warningType: 0
-  minTimeBetweenSpawns: 3
+    warningType: 2
+  minTimeBetweenSpawns: 1
   maxTimeBetweenSpawns: 5
   MinAmmountPerSpawn: 2
   MaxAmmountPerSpawn: 2
