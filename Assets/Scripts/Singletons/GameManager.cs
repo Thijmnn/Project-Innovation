@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int levelUpInterval;
     public float speed;
     public float airResist;
     public float jetMult = 1;
     public float height;
     public int money;
     [SerializeField] int maxLevel;
-    bool gameOn;
+    public bool gameOn;
     [SerializeField] int EnemyLevel = 0;
     public List<EnemyInfo> enem;
     public List<CoinInfo> coins;
@@ -52,18 +53,26 @@ public class GameManager : MonoBehaviour
         {
             speed -= airResist * Time.deltaTime;
             height += speed * Time.deltaTime * jetMult;
-            if (height > 1 && (int)height%20 == 0 && EnemyLevel < maxLevel && !levelUp)
+
+            if(height > levelUpInterval && EnemyLevel < 1)
             {
-                levelUp = true;
+
                 EnemyLevel++;
-                Invoke("NextStage",2);
+                gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
+            }
+            if (height > levelUpInterval*2 && EnemyLevel < 2)
+            {
+
+                EnemyLevel++;
+                gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
+            }
+            if (height > levelUpInterval*3 && EnemyLevel < 3)
+            {
+
+                EnemyLevel++;
                 gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
         }
-    }
-    void NextStage()
-    {
-        levelUp = false;
     }
 
     private void OnEnable()

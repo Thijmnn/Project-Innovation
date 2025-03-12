@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5da5c6ad010cf5499f06541df8cde50, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  EnemyList: []
-  minTimeBetweenSpawns: 3
+  EnemyList:
+  - EnemyType: {fileID: 2225530919567099469, guid: d1ae8f2bfc55343e8946ab13c9737312, type: 3}
+    spawnChanceOutOf100: 50
+    pos: 0
+    warning: 0
+    warningType: 0
+  - EnemyType: {fileID: 768283602812180568, guid: 64287fe5e01c3463b840e72ea3f4bd50, type: 3}
+    spawnChanceOutOf100: 50
+    pos: 0
+    warning: 1
+    warningType: 0
+  minTimeBetweenSpawns: 1
   maxTimeBetweenSpawns: 5
-  MinAmmountPerSpawn: 0
-  MaxAmmountPerSpawn: 0
-  spawnChanceList: 
+  MinAmmountPerSpawn: 1
+  MaxAmmountPerSpawn: 3
+  spawnChanceList: 000000000000000000000000000000000000000000000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000000000003200000032000000

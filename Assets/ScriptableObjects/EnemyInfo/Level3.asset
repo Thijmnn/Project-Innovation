@@ -13,18 +13,23 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   EnemyList:
-  - pos: 0
+  - EnemyType: {fileID: 7515355946459547885, guid: c91749b1547e6469aa7d8c6b31f8ca94, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 0
     warning: 0
     warningType: 0
-    EnemyType: {fileID: 7515355946459547885, guid: c91749b1547e6469aa7d8c6b31f8ca94, type: 3}
-  - pos: 1
+  - EnemyType: {fileID: 4983200431179213566, guid: 091e20141ec3e4324b41b79ac401b0ef, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 1
     warning: 1
     warningType: 0
-    EnemyType: {fileID: 4983200431179213566, guid: 091e20141ec3e4324b41b79ac401b0ef, type: 3}
-  - pos: 3
+  - EnemyType: {fileID: 5474930532454700000, guid: c36acde9e4fa7477c9550510d00c6bc7, type: 3}
+    spawnChanceOutOf100: 33
+    pos: 3
     warning: 1
     warningType: 0
-    EnemyType: {fileID: 5474930532454700000, guid: c36acde9e4fa7477c9550510d00c6bc7, type: 3}
   minTimeBetweenSpawns: 3
   maxTimeBetweenSpawns: 5
-  AmmountPerSpawn: 3
+  MinAmmountPerSpawn: 0
+  MaxAmmountPerSpawn: 0
+  spawnChanceList: 

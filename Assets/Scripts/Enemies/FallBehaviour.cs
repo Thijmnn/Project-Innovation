@@ -6,6 +6,10 @@ public class FallBehaviour : EnemyMoveBehaviour
 {
     [SerializeField] float fallingSpeed;
 
+    protected void Start()
+    {
+        base.Start();
+    }
     // Update is called once per frame
     void Update()
     {

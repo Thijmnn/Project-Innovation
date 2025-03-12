@@ -49,8 +49,10 @@ public enum spawnPosition
     public bool warning;
     public enum warningTypes
     {
+        cloud,
         small,
         big
     };
     public warningTypes warningType;
+
 }
