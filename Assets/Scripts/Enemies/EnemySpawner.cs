@@ -63,6 +63,10 @@ public class SpawnerScript : MonoBehaviour
     {
         while (true)
         {
+            if (!GameManager.Instance.gameOn)
+            {
+                yield break;
+            }
             int spawnChoice = UnityEngine.Random.Range(0, coins.CoinList.Count);
             int randomSpawn = UnityEngine.Random.Range(1, coins.CoinList[spawnChoice].ammountPerSpawn);
             for (int j = 1; j > 0; j++)
@@ -95,6 +99,10 @@ public class SpawnerScript : MonoBehaviour
     {
         while (true)
         {
+            if (!GameManager.Instance.gameOn)
+            {
+                yield break;
+            }
             if (firstSpawn)
             {
                 firstSpawn = false;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]bool levelUp = false;
 
     [SerializeField] AudioSource deathSound;
+
+    [SerializeField] TextMeshProUGUI highscoreText;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -73,12 +76,9 @@ public class GameManager : MonoBehaviour
 
             if(speed <= -1)
             {
+                highscoreText.text = height.ToString();
                 gameRestart.Invoke();
-                levelUp = false;
-                EnemyLevel = 0;
-                gameOn = false;
-                height = 0;
-                speed = 0;  
+                Reset();
             }
         }
     }
@@ -98,5 +98,14 @@ public class GameManager : MonoBehaviour
     private void AddCoin(CoinInfo coin,int coinType)
     {
         money += coin.CoinList[coinType].ammount;
+    }
+
+    private void Reset()
+    {
+        levelUp = false;
+        EnemyLevel = 0;
+        gameOn = false;
+        height = 0;
+        speed = 0;
     }
 }
