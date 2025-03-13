@@ -9,17 +9,19 @@ public class UI_Script : MonoBehaviour
     [SerializeField] GameObject shop;
     [SerializeField] GameObject tutorial;
     [SerializeField] GameObject duringGame;
+    [SerializeField] GameObject story;
     public static event Action startGame;
     // Start is called before the first frame update
     void Start()
     {
+        story.SetActive(true);
         shop.SetActive(false);
-        start.SetActive(true);
+        start.SetActive(false);
         tutorial.SetActive(false);
         duringGame.SetActive(false);
     }
 
-
+    
     private void OnEnable()
     {
         GameManager.gameRestart += Start;
@@ -27,6 +29,12 @@ public class UI_Script : MonoBehaviour
     private void DisEnable()
     {
         GameManager.gameRestart += Start;
+    }
+
+    public void closeComic()
+    {
+        start.SetActive(true);
+        story.SetActive(false);
     }
 
     // Update is called once per frame
