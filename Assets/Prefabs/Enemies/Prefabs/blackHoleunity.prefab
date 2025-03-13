@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 1
-  MoveSpeed: -1
-  fallSpeed: 0.1
+  MoveSpeed: -3
+  fallSpeed: 3
 --- !u!58 &4986891044219206578
 CircleCollider2D:
   m_ObjectHideFlags: 0
