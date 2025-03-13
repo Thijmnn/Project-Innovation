@@ -53,6 +53,9 @@ public class BackgroundScrolling : MonoBehaviour
     bool switchl7;
     int layerLevelL7 = 0;
 
+
+    [SerializeField] GameObject l1_2;
+
     enum bgType
     {
         Land,
@@ -87,7 +90,7 @@ public class BackgroundScrolling : MonoBehaviour
     }
     void Layer1Start()
     {
-        
+        l1_2.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg1.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg2.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg1.transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, 4);
@@ -156,10 +159,14 @@ public class BackgroundScrolling : MonoBehaviour
         if (!sp.materials[0].name.Contains(_materialL1[curLevel].name))
         {
             sp.material = (_materialL1[curLevel]);
+            Renderer sp2 = l1_2.GetComponent<Renderer>();
+            sp2.material = (_materialL1[curLevel]);
         }
         if (switching)
         {
             sp.material = (_materialL1[curLevel]);
+            Renderer sp2 = l1_2.GetComponent<Renderer>();
+            sp2.material = (_materialL1[curLevel]);
             curLevel += 1;
             switching = false;
 
