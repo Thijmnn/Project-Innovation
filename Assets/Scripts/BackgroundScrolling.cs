@@ -224,7 +224,7 @@ public class BackgroundScrolling : MonoBehaviour
         }
         else if (!sp.materials[0].name.Contains(materials[layerLevelL7].name))
         {
-            if (bgLevel != bgType.Orbit && i % 2 != 0);
+            if (bgLevel != bgType.Orbit && i % 2 != 0) ;
             else sp.material = (materials[layerLevelL7]);
         }
     }
@@ -238,7 +238,7 @@ public class BackgroundScrolling : MonoBehaviour
             }
             sp.material = (materials[layerLevelL2]);
 
-            
+
             layerSwitch = false;
             if (switchl2 && layer == 2) switchl2 = false;
         }
@@ -256,11 +256,69 @@ public class BackgroundScrolling : MonoBehaviour
             sp.material = (materials[layerLevelL2]);
         }
     }
-
-
     void Layer3(List<Material> materials, Renderer sp)
     {
         sp.material = (materials[1]);
+    }
+
+    void ResetBackgrounds()
+    {
+        ResetFirstLayer(_materialL1);
+        ResetNormal(l2, _materialL2, switchl2, speedScaleL2, scaleL2, 2);
+        ResetFirstImage(l3, _materialL3, switchl3, speedScaleL3, scaleL3, 3);
+        ResetFirstImage(l4, _materialL4, switchl4, speedScaleL4, scaleL4, 4);
+        ResetFirstImage(l5, _materialL5, switchl5, speedScaleL5, scaleL5, 5);
+        ResetNormal(l6, _materialL6, switchl6, speedScaleL6, scaleL6, 6);
+        EveryOther(l7, _materialL7, switchl7, speedScaleL7, scaleL7, 7);
+
+        bgLevel = bgType.Land;
+        layerLevelL2 = 0;
+        layerLevelL3 = 0;
+        layerLevelL4 = 0;
+        layerLevelL5 = 0;
+        layerLevelL6 = 0;
+        layerLevelL7 = 0;
+    }
+
+    void ResetNormal(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    {
+        ScreenQuarterStart(Layer);
+        for (int i = 0; i < Layer.Count; i++)
+        {
+            Renderer sp = Layer[i].GetComponent<Renderer>();
+            sp.material = (materials[0]);
+        }
+        layerSwitch = false;
+    }
+    void EveryOther(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    {
+        ScreenQuarterStart(Layer);
+        for (int i = 0; i < Layer.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Renderer sp = Layer[i].GetComponent<Renderer>();
+                sp.material = (materials[0]);
+            }
+        }
+        layerSwitch = false;
+    }
+    void ResetFirstImage(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    {
+        if (layer == 3)
+            ScreenQuarterStart(Layer);
+        else ScreenSizeStart(Layer);
+        Renderer sp = Layer[0].GetComponent<Renderer>();
+        sp.material = (materials[0]);
+    }
+    void ResetFirstLayer(List<Material> materials)
+    {
+        Layer1Start();
+
+        Renderer sp = bg1.GetComponent<Renderer>();
+        sp.material = (materials[0]);
+        sp = bg2.GetComponent<Renderer>();
+        sp.material = (materials[0]);
     }
 
 }
