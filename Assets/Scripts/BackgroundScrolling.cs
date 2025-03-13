@@ -115,8 +115,8 @@ public class BackgroundScrolling : MonoBehaviour
         for (int i = 0; i < l.Count; i++)
         {
             l[i].transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 1.5f, Screen.height * 1.5f, 100));
-            if (i == 0) l[i].transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, l[i].transform.position.z + 2);
-            else l[i].transform.position = new Vector3(0, 0, l[i].transform.position.z + 2);
+            if (i == 0) l[i].transform.position = new Vector3(0, 0 , l[i].transform.position.z + 2);
+            else l[i].transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, l[i].transform.position.z + 2);
         }
 
     }
@@ -331,7 +331,7 @@ public class BackgroundScrolling : MonoBehaviour
         else
         {
             ScreenSizeStart(Layer);
-            for (int i = 1; i < Layer.Count; i++)
+            for (int i = 0; i < Layer.Count; i++)
             {
                 Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z - 2);
             }
