@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6952816
 Transform:
   m_ObjectHideFlags: 0
@@ -299,13 +299,14 @@ GameObject:
   m_Component:
   - component: {fileID: 21142100}
   - component: {fileID: 21142101}
+  - component: {fileID: 21142102}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &21142100
 Transform:
   m_ObjectHideFlags: 0
@@ -417,6 +418,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &21142102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21142099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552d566375f5ccf45821bd257f370efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &31439184
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,6 +3087,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 21142099}
+        m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1136241284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3257,7 +3282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1160490921
 Animator:
   serializedVersion: 5
@@ -4510,7 +4535,7 @@ MonoBehaviour:
   price: {fileID: 1102893629}
   sprites:
   - {fileID: -1240714910, guid: 4bac85c39ac2f0546be49421cd50d50f, type: 3}
-  - {fileID: -775091612, guid: 6272d8a64e5321047b1d7c63da074510, type: 3}
+  - {fileID: 51647281, guid: 6272d8a64e5321047b1d7c63da074510, type: 3}
   - {fileID: 704650140, guid: 03ffef422f4031e458c03020c3f49b06, type: 3}
   sprite: {fileID: 1680557887}
   stats: {fileID: 11400000, guid: 12e1e19ede1f4c644929a189ce8aee3f, type: 2}
@@ -4583,8 +4608,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6952815}
-        m_TargetAssemblyTypeName: CostScript, Assembly-CSharp
+      - m_Target: {fileID: 6952817}
+        m_TargetAssemblyTypeName: LaunchManager, Assembly-CSharp
+        m_MethodName: UpgradeLauncher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 21142099}
+        m_TargetAssemblyTypeName: LaunchManager, Assembly-CSharp
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
@@ -6297,6 +6334,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 21142099}
+        m_TargetAssemblyTypeName: CostScript, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2096455898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6434,6 +6483,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 21142102}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: PlayAudioSource
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
