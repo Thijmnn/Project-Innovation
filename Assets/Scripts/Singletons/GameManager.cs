@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int levelUpInterval;
+    public int levelUpInterval;
     public float speed;
     public float airResist;
     public float jetMult = 1;
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int money;
     [SerializeField] int maxLevel;
     public bool gameOn;
-    [SerializeField] int EnemyLevel = 0;
+    public int EnemyLevel = 0;
     public List<EnemyInfo> enem;
     public List<CoinInfo> coins;
     public static event Action<EnemyInfo,CoinInfo,float> gameStart;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
             if(speed <= -1)
             {
-                highscoreText.text = Mathf.RoundToInt(height).ToString();
+                //highscoreText.text = Mathf.RoundToInt(height).ToString();
                 gameRestart.Invoke();
                 Reset();
             }

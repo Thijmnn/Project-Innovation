@@ -655,7 +655,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 1094879043}
   m_PlaneDistance: 1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -678,10 +678,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2117198255}
   - {fileID: 1610758262}
   - {fileID: 222678912}
   - {fileID: 25146836}
-  - {fileID: 2117198255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7695,8 +7695,8 @@ RectTransform:
   m_Children:
   - {fileID: 201432241}
   - {fileID: 1058218919}
-  - {fileID: 682168467}
   - {fileID: 1309076752}
+  - {fileID: 682168467}
   m_Father: {fileID: 92485344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7791,8 +7791,8 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 92485344}
   - {fileID: 1094879044}
+  - {fileID: 92485344}
   - {fileID: 1419131818}
   - {fileID: 1823216739}
   - {fileID: 1181648770}
