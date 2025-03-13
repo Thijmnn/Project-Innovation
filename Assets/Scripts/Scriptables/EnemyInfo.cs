@@ -36,14 +36,7 @@ public enum spawnPosition
     Sides,
     SidesTop,
     SidesBottom,
-/*    TopLeft,
-    TopRight,
-    BottomLeft,
-    BottomRight,
-    LeftTop,
-    RightTop,
-    LeftBottom,
-    RightBottom,*/
+
 };
     public spawnPosition pos;
     public bool warning;
