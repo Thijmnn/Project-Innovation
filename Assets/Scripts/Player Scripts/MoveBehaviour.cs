@@ -27,7 +27,7 @@ public class MoveBehaviour : MonoBehaviour
     private Rigidbody2D rb;
 
     bool launched;
-    bool launching;
+    [SerializeField,HideInInspector] public bool launching;
 
     Camera cam;
 
@@ -121,7 +121,6 @@ public class MoveBehaviour : MonoBehaviour
                 transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);
                 launching = true;
                 if (!stretch.isPlaying) { stretch.Play(); }
-
             }
             else
             {
