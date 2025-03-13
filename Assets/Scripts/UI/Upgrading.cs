@@ -12,7 +12,7 @@ public class Upgrading : MonoBehaviour
     [SerializeField] GameObject sprite;
     [SerializeField] UpgradeStats stats;
     public static event Action<UpgradeStats> upgrade;
-    int curUpgrade;
+    [SerializeField, HideInInspector] public int curUpgrade;
     int currentSprite = 0;
 
     // Start is called before the first frame update

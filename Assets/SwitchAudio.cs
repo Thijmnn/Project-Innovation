@@ -27,10 +27,27 @@ public class SwitchAudio : MonoBehaviour
     {
         if (GameManager.Instance.gameOn && currentSound == sounds.menu)
         {
-            currentSound = sounds.game;
-            m_AudioSource.Stop();
-            m_AudioSource.clip = clips[2];
-            m_AudioSource.Play();
+            m_AudioSource.loop = false;
+            if(m_AudioSource.isPlaying == false)
+            {
+                currentSound = sounds.game;
+                m_AudioSource.loop = true;
+                m_AudioSource.Stop();
+                m_AudioSource.clip = clips[2];
+                m_AudioSource.Play();
+            }
+        }
+        else if(!GameManager.Instance.gameOn && currentSound == sounds.game)
+        {
+            m_AudioSource.loop = false;
+            if (m_AudioSource.isPlaying == false)
+            {
+                currentSound = sounds.game;
+                m_AudioSource.loop = true;
+                m_AudioSource.Stop();
+                m_AudioSource.clip = clips[1];
+                m_AudioSource.Play();
+            }
         }
     }  
 }

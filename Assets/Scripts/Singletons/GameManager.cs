@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,8 +18,13 @@ public class GameManager : MonoBehaviour
     public List<EnemyInfo> enem;
     public List<CoinInfo> coins;
     public static event Action<EnemyInfo,CoinInfo,float> gameStart;
+    public static event Action gameRestart;
     public Transform scalingObj;
     [SerializeField]bool levelUp = false;
+
+    [SerializeField] AudioSource deathSound;
+
+    [SerializeField] TextMeshProUGUI highscoreText;
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -37,7 +43,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     void GameStart()
     {
@@ -51,6 +57,14 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
+            /*if (MicrophoneInput.instance.blowCharge <= 0)
+            {
+                speed -= airResist * Time.deltaTime;
+            }
+            else
+            {
+                MicrophoneInput.instance.blowCharge -= 0.01f;
+            }*/
             speed -= airResist * Time.deltaTime;
             height += speed * Time.deltaTime * jetMult;
 
@@ -60,7 +74,13 @@ public class GameManager : MonoBehaviour
                 print(EnemyLevel);
                 gameStart?.Invoke(enem[EnemyLevel], coins[EnemyLevel], height);
             }
- 
+
+            if(speed <= -1)
+            {
+                //highscoreText.text = height.ToString();
+                gameRestart.Invoke();
+                Reset();
+            }
         }
     }
 
@@ -79,5 +99,14 @@ public class GameManager : MonoBehaviour
     private void AddCoin(CoinInfo coin,int coinType)
     {
         money += coin.CoinList[coinType].ammount;
+    }
+
+    private void Reset()
+    {
+        levelUp = false;
+        EnemyLevel = 0;
+        gameOn = false;
+        height = 0;
+        speed = 0;
     }
 }

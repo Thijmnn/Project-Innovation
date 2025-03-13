@@ -15,6 +15,15 @@ public class UI_Script : MonoBehaviour
         start.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        GameManager.gameRestart += Start;
+    }
+    private void DisEnable()
+    {
+        GameManager.gameRestart += Start;
+    }
+
     // Update is called once per frame
     public void OpenShop()
     {

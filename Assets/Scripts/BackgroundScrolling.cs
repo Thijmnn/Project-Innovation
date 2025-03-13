@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D;
+
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -260,7 +260,14 @@ public class BackgroundScrolling : MonoBehaviour
     {
         sp.material = (materials[1]);
     }
-
+    private void OnEnable()
+    {
+        GameManager.gameRestart += ResetBackgrounds;
+    }
+    private void OnDisable()
+    {
+        GameManager.gameRestart -= ResetBackgrounds;
+    }
     void ResetBackgrounds()
     {
         ResetFirstLayer(_materialL1);
@@ -287,6 +294,7 @@ public class BackgroundScrolling : MonoBehaviour
         {
             Renderer sp = Layer[i].GetComponent<Renderer>();
             sp.material = (materials[0]);
+            Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z-2);
         }
         layerSwitch = false;
     }
@@ -300,16 +308,30 @@ public class BackgroundScrolling : MonoBehaviour
                 Renderer sp = Layer[i].GetComponent<Renderer>();
                 sp.material = (materials[0]);
             }
+            Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z - 2);
         }
         layerSwitch = false;
     }
-    void ResetFirstImage(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    void ResetFirstImage(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int lay)
     {
-        if (layer == 3)
+        if (lay == 3)
+        {
+            print("lay");
             ScreenQuarterStart(Layer);
-        else ScreenSizeStart(Layer);
+            Layer[0].transform.position = new Vector3(Layer[0].transform.position.x, Layer[0].transform.position.y, 2.13f);
+        }
+        else
+        {
+            ScreenSizeStart(Layer);
+            for (int i = 1; i < Layer.Count; i++)
+            {
+                Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z - 2);
+            }
+        }
+
         Renderer sp = Layer[0].GetComponent<Renderer>();
         sp.material = (materials[0]);
+        
     }
     void ResetFirstLayer(List<Material> materials)
     {
