@@ -25,6 +25,6 @@ public class Upgrade : MonoBehaviour
     void UpgradingStats(UpgradeStats up)
     {
         movement.speedCharge *= up.launchSpeed;
-        MicrophoneInput.instance.maxCharge *= up.speedMult;
+        MicrophoneInput.instance._maxChargeReset *= up.speedMult;
     }
 }

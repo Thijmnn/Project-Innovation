@@ -74,15 +74,21 @@ public class MoveBehaviour : MonoBehaviour
             //beginGame?.Invoke();
             LeftToRight();
         }
+
+        if (!GameManager.Instance.gameOn)
+        {
+            transform.position = new Vector3 (0, transform.position.y, transform.position.z);
+        }
+       
     }
 
     private void FixedUpdate()
     {
-        if (isOnPhone)
+        if (isOnPhone && GameManager.Instance.gameOn)
         {
             rb.velocity = new Vector2(xVelocity, yVelocity);
         }
-        else
+        else if (GameManager.Instance.gameOn)
         {
             rb.velocity = new Vector2(speedX, 0);
         }
@@ -92,8 +98,12 @@ public class MoveBehaviour : MonoBehaviour
     {
         //Movement
         xVelocity = Input.acceleration.x * moveSpeed;
-        Quaternion phoneRot = offset * GyroToUnity(Input.gyro.attitude);
-        yVelocity = phoneRot.x * moveSpeed;
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
+        {
+            yVelocity = 0.2f;
+            if (MicrophoneInput.instance.blowCharge > 0) { MicrophoneInput.instance.blowCharge -= 0.2f; }
+        }
+        else { yVelocity = -0.2f; }
 
         speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
@@ -107,6 +117,7 @@ public class MoveBehaviour : MonoBehaviour
         {
             transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
         }
+        Mathf.Clamp(transform.position.y, -5, 3);
     }
 
     private void DragLaunch()
@@ -182,8 +193,11 @@ public class MoveBehaviour : MonoBehaviour
 
     public void Reset()
     {
+        xVelocity = 0; yVelocity = 0;
+        
         transform.position = playerLauncher.transform.position;
-        rb.velocity = Vector3.zero;
         launched = false;
+        
+        
     }
 }

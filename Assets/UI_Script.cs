@@ -49,11 +49,13 @@ public class UI_Script : MonoBehaviour
     {
         tutorial.SetActive(true);
         Invoke("CloseTutorial", 3);
+        
     }
     void CloseTutorial()
     {
+        MicrophoneInput.instance.StartBlowing();
         tutorial.SetActive(false);
-        startGame?.Invoke();
+/*        startGame?.Invoke();*/
         GameUI();
     }
     void GameUI()
