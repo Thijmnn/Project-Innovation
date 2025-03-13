@@ -24,6 +24,5 @@ public class Upgrade : MonoBehaviour
     void UpgradingStats(UpgradeStats up)
     {
         movement.speedCharge *= up.speedMult;
-        movement.speedSave *= up.speedMult;
     }
 }
