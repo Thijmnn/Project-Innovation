@@ -6281,6 +6281,7 @@ MonoBehaviour:
   moveSpeed: 1
   speedCharge: 0
   playerLauncher: {fileID: 2130077637}
+  launching: 0
   isOnPhone: 0
   startingPhoneRotation: {x: 0, y: 0, z: 0}
   stretch: {fileID: 0}
