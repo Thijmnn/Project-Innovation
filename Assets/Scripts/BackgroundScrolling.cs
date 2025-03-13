@@ -75,6 +75,7 @@ public class BackgroundScrolling : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        scaleL1 = bg1.transform.localScale.y;
         cam = Camera.main;
         Layer1Start();
         ScreenQuarterStart(l2);
@@ -86,7 +87,7 @@ public class BackgroundScrolling : MonoBehaviour
     }
     void Layer1Start()
     {
-        scaleL1 = bg1.transform.localScale.y;
+        
         bg1.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg2.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg1.transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, 4);
@@ -163,15 +164,19 @@ public class BackgroundScrolling : MonoBehaviour
             switching = false;
 
         }
-        if (GameManager.Instance.height > 20 && bgLevel == bgType.Land)
+        print(GameManager.Instance.EnemyLevel);
+        print(GameManager.Instance.height);
+
+        if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel + 1)) && bgLevel == bgType.Land)
         {
+            print("aaa");
             curLevel += 1;
             bgLevel = bgType.Sky;
             switching = true;
             switchl2 = true;
             switchl6 = true;
         }
-        if (GameManager.Instance.height > 40 && bgLevel == bgType.Sky)
+        else if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel )) && bgLevel == bgType.Sky)
         {
             curLevel += 1;
             bgLevel = bgType.Orbit;
@@ -180,7 +185,7 @@ public class BackgroundScrolling : MonoBehaviour
             switchl6 = true;
             switchl7 = true;
         }
-        if (GameManager.Instance.height > 60 && bgLevel == bgType.Orbit)
+        else if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel - 1)) && bgLevel == bgType.Orbit)
         {
             curLevel += 1;
             bgLevel = bgType.Space;
@@ -285,6 +290,9 @@ public class BackgroundScrolling : MonoBehaviour
         layerLevelL5 = 0;
         layerLevelL6 = 0;
         layerLevelL7 = 0;
+
+        switchl2 = false;
+        switchl7 = false;
     }
 
     void ResetNormal(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
