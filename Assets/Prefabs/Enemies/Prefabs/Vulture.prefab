@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: 1
   MoveSpeed: 1
-  fallSpeed: 1
+  fallSpeed: 5
 --- !u!114 &5781611125123851729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
