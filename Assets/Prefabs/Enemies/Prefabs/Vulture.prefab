@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: 1
   MoveSpeed: 1
-  fallSpeed: 1
+  fallSpeed: 5
 --- !u!114 &5781611125123851729
 MonoBehaviour:
   m_ObjectHideFlags: 0

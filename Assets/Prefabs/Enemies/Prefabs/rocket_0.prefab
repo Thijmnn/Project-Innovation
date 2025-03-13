@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: 0
-  MoveSpeed: 1
+  MoveSpeed: 0
   riseSpeed: 5
 --- !u!70 &917378605445849482
 CapsuleCollider2D:
