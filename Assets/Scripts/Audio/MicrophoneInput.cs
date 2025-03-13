@@ -17,8 +17,6 @@ public class MicrophoneInput : MonoBehaviour
     [SerializeField] GameObject freakBird;
     [SerializeField] Animator birdExpand;
 
-    [SerializeField] private GameObject startButton;
-
     [HeaderAttribute("Audio")]
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioSource _startAudioSource;
@@ -26,9 +24,9 @@ public class MicrophoneInput : MonoBehaviour
     [SerializeField] private int loudnessThreshold = 800;
 
 
-    [SerializeField] public float maxCharge;
+    [SerializeField, HideInInspector] public float maxCharge;
 
-    private float _maxCharge;
+    public float _maxChargeReset;
 
     public float blowCharge;
 
@@ -59,10 +57,13 @@ public class MicrophoneInput : MonoBehaviour
         microphoneName = Microphone.devices[0].ToString();
         _audioSource.outputAudioMixerGroup = _micMix;
         _startAudioSource.outputAudioMixerGroup = _micMix;
+        maxCharge = _maxChargeReset;
+
     }
 
     void Update()
     {
+        print(maxCharge);
         if (_startAudioSource.isPlaying)
         {
             AnimatePlayer();
@@ -70,7 +71,6 @@ public class MicrophoneInput : MonoBehaviour
         }
         else if(!_startAudioSource.isPlaying && !_audioSource.isPlaying && once)
         {
-            _maxCharge = maxCharge;
             SetMaxCharge(blowCharge);
             blown = true;
         }
@@ -182,7 +182,6 @@ public class MicrophoneInput : MonoBehaviour
         _audioSource.Stop();
         blown = false;
         once = false;
-        maxCharge = _maxCharge;
-        startButton.SetActive(true);
+        maxCharge = _maxChargeReset;
     }
 }

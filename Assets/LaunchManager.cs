@@ -61,11 +61,11 @@ public class LaunchManager : MonoBehaviour
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
         {
             Vector3 fingerPos = cam.ScreenToWorldPoint(Input.touches[0].position);
-            if (fingerPos.y < transform.position.y)
+            Vector3 draggedPos = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y, 0));
+            float dist = draggedPos.y - transform.position.y;
+            if (fingerPos.y < transform.position.y && dist >= -0.7f)
             {
-                Vector3 draggedPos = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y, 0));
-                float dist = draggedPos.y - transform.position.y;
-                print(dist);
+                
 
             }
             else
