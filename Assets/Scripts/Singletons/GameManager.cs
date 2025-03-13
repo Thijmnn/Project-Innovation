@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
             if(speed <= -1)
             {
-                //highscoreText.text = height.ToString();
+                highscoreText.text = Mathf.RoundToInt(height).ToString();
                 gameRestart.Invoke();
                 Reset();
             }

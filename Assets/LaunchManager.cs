@@ -10,13 +10,16 @@ public class LaunchManager : MonoBehaviour
     private int launcherIndex;
     void Start()
     {
+        GameManager.gameRestart += Reset;
+        
         launcher = launchers[0];
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {     
+        launcher.SetActive(!GameManager.Instance.gameOn);
+        print(!GameManager.Instance.gameOn);
     }
 
     public void UpgradeLauncher()
@@ -34,8 +37,19 @@ public class LaunchManager : MonoBehaviour
         }
         else if (launcherIndex >= 9)
         {
+            launcher.SetActive(false);
             launcher = launchers[2];
+            launcher.SetActive(true);
         }
+    }
 
+    private void Reset()
+    {
+        launcher.SetActive(true);
+    }
+
+    public void AnimateLauncher()
+    {
+        
     }
 }
