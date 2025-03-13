@@ -17,8 +17,9 @@ public class Upgrading : MonoBehaviour
     // Start is called before the first frame update
     public void Upgrade()
     {
-        if (price.cost < GameManager.Instance.money)
+        if (price.cost <= GameManager.Instance.money)
         {
+            GameManager.Instance.money -= price.cost;
             curUpgrade += 1;
             if (currentSprite < sprites.Count - 1 && curUpgrade % 4 == 0)
             {

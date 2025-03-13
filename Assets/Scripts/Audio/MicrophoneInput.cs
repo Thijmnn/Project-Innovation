@@ -63,7 +63,6 @@ public class MicrophoneInput : MonoBehaviour
 
     void Update()
     {
-        print(maxCharge);
         if (_startAudioSource.isPlaying)
         {
             AnimatePlayer();
@@ -106,13 +105,10 @@ public class MicrophoneInput : MonoBehaviour
     }
     private void GetMaxCharge(float _totalMaxCharge, float _loudnessThreshold)
     {
-        if (Mathf.RoundToInt(GetLoudnessFromAudioClip(_startAudioSource.timeSamples, _startAudioSource.clip) * loudnessSensibility) > _loudnessThreshold)
-        {
-            if (blowCharge < _totalMaxCharge) {
+            if (blowCharge < _totalMaxCharge && HawkTuah.instance.isBeingLoud) {
                 
                 blowCharge++;
             }
-        }
     }
     private void SetMaxCharge(float _maxCharge)
     {
@@ -120,13 +116,12 @@ public class MicrophoneInput : MonoBehaviour
     }
     private void RechargeOstrich(float _loudnessThreshold)
     {
-        if (Mathf.RoundToInt(GetLoudnessFromAudioClip(_audioSource.timeSamples, _audioSource.clip) * loudnessSensibility) > _loudnessThreshold)
-        {
-            if (blowCharge < maxCharge)
+        
+            if (blowCharge < maxCharge && HawkTuah.instance.isBeingLoud)
             {
                 blowCharge++;
             }
-        }
+        
     }
     private void AnimatePlayer()
     {

@@ -1,23 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class HawkTuah : MonoBehaviour
 {
+    public static HawkTuah instance;
 
     int samplesize = 128;
 
     string micro;
 
-    AudioClip audio;
+    AudioClip _audio;
 
     public float level;
 
+    public bool isBeingLoud;
+
+    float peak;
 
     void Start()
     {
-        audio = GetComponent<AudioClip>();
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance);
+        }
+
+        _audio = GetComponent<AudioClip>();
 
         if (micro == null)
         {
@@ -25,7 +39,7 @@ public class HawkTuah : MonoBehaviour
 
         }
 
-        audio = Microphone.Start(micro, true, 1, 441000);
+        _audio = Microphone.Start(micro, true, 1, 9999999);
 
     }
 
@@ -38,28 +52,25 @@ public class HawkTuah : MonoBehaviour
         int mic_pos = Microphone.GetPosition(null) - (samplesize + 1);
         if (mic_pos < 0)
         {
-
             return;
-
         }
 
-        audio.GetData(spectrum, mic_pos);
+        print(mic_pos);
+        _audio.GetData(spectrum, mic_pos);
 
         for (int i = 0; i < spectrum.Length; i++)
         {
 
-            float peak = spectrum[i] * spectrum[i];
-
-            if (level < peak)
+            peak = spectrum[i] * spectrum[i];
+            
+            if (level <= peak)
             {
-                MicrophoneInput.instance.blowCharge++;
+                isBeingLoud = true;
             }
             else
             {
-                print("Silence");
+                isBeingLoud = false;
             }
-
-
         }
 
     

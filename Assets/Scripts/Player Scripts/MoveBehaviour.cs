@@ -58,6 +58,16 @@ public class MoveBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape) && MicrophoneInput.instance.blown == true) {
+            stretch.Stop();
+            fling.Play();
+            float dist = transform.position.y - playerLauncher.transform.position.y;
+            LaunchPlayer(-dist * speedCharge);
+            launchSpeed = 0;
+            launched = true;
+            transform.position = playerLauncher.transform.position;
+        }
+
         if (isOnPhone)
         {
             if (MicrophoneInput.instance != null)
