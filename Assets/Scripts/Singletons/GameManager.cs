@@ -57,14 +57,15 @@ public class GameManager : MonoBehaviour
     {
         if (gameOn)
         {
-            if(MicrophoneInput.instance.blowCharge <= 0)
+            /*if (MicrophoneInput.instance.blowCharge <= 0)
             {
                 speed -= airResist * Time.deltaTime;
             }
             else
             {
                 MicrophoneInput.instance.blowCharge -= 0.01f;
-            }
+            }*/
+            speed -= airResist * Time.deltaTime;
             height += speed * Time.deltaTime * jetMult;
 
             if(height > levelUpInterval * (EnemyLevel+1) && EnemyLevel < maxLevel-1)
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
 
             if(speed <= -1)
             {
-                highscoreText.text = height.ToString();
+                //highscoreText.text = height.ToString();
                 gameRestart.Invoke();
                 Reset();
             }

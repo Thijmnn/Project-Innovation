@@ -2754,8 +2754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpInterval: 20
-  speed: 1
-  airResist: 0
+  speed: 5
+  airResist: 1
   jetMult: 1
   height: 0
   money: 1000
@@ -2774,6 +2774,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c934b6a036c3fbd4f9ce3367af8085b4, type: 2}
   scalingObj: {fileID: 1663500691}
   levelUp: 0
+  deathSound: {fileID: 0}
+  highscoreText: {fileID: 0}
 --- !u!4 &1366175643
 Transform:
   m_ObjectHideFlags: 0
@@ -3048,6 +3050,7 @@ MonoBehaviour:
   - {fileID: 704650140, guid: 03ffef422f4031e458c03020c3f49b06, type: 3}
   sprite: {fileID: 1680557887}
   stats: {fileID: 11400000, guid: 6982338361aee184cb7ffcc86efaab67, type: 2}
+  curUpgrade: 0
 --- !u!114 &1509376966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4658,6 +4661,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 921571e6619218c4ab97cb0d613738c3, type: 3}
   sprite: {fileID: 703135697}
   stats: {fileID: 11400000, guid: 12e1e19ede1f4c644929a189ce8aee3f, type: 2}
+  curUpgrade: 0
 --- !u!114 &2096455897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4889,6 +4893,8 @@ MonoBehaviour:
   playerLauncher: {fileID: 2130077637}
   isOnPhone: 0
   startingPhoneRotation: {x: 0, y: 0, z: 0}
+  stretch: {fileID: 0}
+  fling: {fileID: 0}
 --- !u!114 &2130077639
 MonoBehaviour:
   m_ObjectHideFlags: 0

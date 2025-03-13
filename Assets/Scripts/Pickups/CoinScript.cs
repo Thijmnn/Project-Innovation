@@ -32,6 +32,13 @@ public class CoinScript : MonoBehaviour
             AddMoney?.Invoke(coin,coinType);
         }
     }
+    private void Update()
+    {
+        if (!GameManager.Instance.gameOn)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void FixedUpdate()
     {
         rb.AddForce(new Vector2(0, -speed));

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
@@ -23,7 +24,6 @@ public class Upgrade : MonoBehaviour
     void UpgradingStats(UpgradeStats up)
     {
         movement.speedCharge *= up.speedMult;
-        
+        movement.speedSave *= up.speedMult;
     }
-
 }
