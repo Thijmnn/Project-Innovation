@@ -7,13 +7,16 @@ public class UI_Script : MonoBehaviour
 {
     [SerializeField] GameObject start;
     [SerializeField] GameObject shop;
+    [SerializeField] GameObject tutorial;
     public static event Action startGame;
     // Start is called before the first frame update
     void Start()
     {
         shop.SetActive(false);
         start.SetActive(true);
+        tutorial.SetActive(false);
     }
+
 
     private void OnEnable()
     {
@@ -37,7 +40,17 @@ public class UI_Script : MonoBehaviour
     }
     public void StartGame()
     {
-        startGame?.Invoke();
+        StartTutorial();
         start.SetActive(false);
+    }
+    public void StartTutorial()
+    {
+        tutorial.SetActive(true);
+        Invoke("CloseTutorial", 3);
+    }
+    void CloseTutorial()
+    {
+        tutorial.SetActive(false);
+        startGame?.Invoke();
     }
 }
