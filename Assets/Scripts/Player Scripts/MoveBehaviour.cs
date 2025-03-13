@@ -110,8 +110,8 @@ public class MoveBehaviour : MonoBehaviour
         xVelocity = Input.acceleration.x * moveSpeed;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
         {
-            
-            if (MicrophoneInput.instance.blowCharge > 0) { MicrophoneInput.instance.blowCharge -= 0.1f; yVelocity = 1f; }
+
+            if (MicrophoneInput.instance.blowCharge > 0.5f) { MicrophoneInput.instance.blowCharge -= 0.1f; yVelocity = 1f; }
         }
         else { yVelocity = -0.2f; }
 

@@ -32,7 +32,6 @@ public class SwitchAudio : MonoBehaviour
             {
                 currentSound = sounds.game;
                 m_AudioSource.loop = true;
-                m_AudioSource.Stop();
                 m_AudioSource.clip = clips[2];
                 m_AudioSource.Play();
             }
@@ -44,7 +43,6 @@ public class SwitchAudio : MonoBehaviour
             {
                 currentSound = sounds.game;
                 m_AudioSource.loop = true;
-                m_AudioSource.Stop();
                 m_AudioSource.clip = clips[1];
                 m_AudioSource.Play();
             }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
+
 
 [RequireComponent(typeof(EnemyMoveBehaviour))]
 public class EnemyManager : MonoBehaviour
@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 collisonSound.Play();   
-                MicrophoneInput.instance.blowCharge -= 5f;
+                MicrophoneInput.instance.blowCharge -= 15f;
                 Destroy(gameObject);
             }
         
