@@ -13,6 +13,8 @@ public class CoinScript : MonoBehaviour
     public int coinType;
     public static event Action<CoinInfo,int> AddMoney;
     Rigidbody2D rb;
+
+    [SerializeField] AudioSource pickUpCoin;
     // Start is called before the first frame update
     private void Start()
     {
@@ -21,12 +23,20 @@ public class CoinScript : MonoBehaviour
         rb.gravityScale = 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            pickUpCoin.Play();
             Destroy(gameObject);
             AddMoney?.Invoke(coin,coinType);
+        }
+    }
+    private void Update()
+    {
+        if (!GameManager.Instance.gameOn)
+        {
+            Destroy(gameObject);
         }
     }
     private void FixedUpdate()

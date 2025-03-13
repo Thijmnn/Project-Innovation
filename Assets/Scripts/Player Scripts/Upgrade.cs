@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
     MoveBehaviour movement;
     ShootingBehaviour shooting;
+    
     private void OnEnable()
     {
         Upgrading.upgrade += UpgradingStats;
@@ -22,8 +24,7 @@ public class Upgrade : MonoBehaviour
     }
     void UpgradingStats(UpgradeStats up)
     {
-        movement.speedCharge *= up.speedMult;
-        
+        movement.speedCharge *= up.launchSpeed;
+        MicrophoneInput.instance._maxChargeReset *= up.speedMult;
     }
-
 }

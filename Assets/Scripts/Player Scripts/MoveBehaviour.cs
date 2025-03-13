@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class MoveBehaviour : MonoBehaviour
 {
@@ -20,132 +21,203 @@ public class MoveBehaviour : MonoBehaviour
     float yVelocity;
 
     float speedX;
-    
+
     float launchSpeed;
 
     private Rigidbody2D rb;
 
     bool launched;
+    [SerializeField,HideInInspector] public bool launching;
 
     Camera cam;
 
     [SerializeField] bool isOnPhone;
     public Vector3 startingPhoneRotation;
-// Start is called before the first frame update
-void Start()
-{
-    startingPhoneRotation = new Vector3(90, 0, 0);
-    offset = Quaternion.Inverse(GyroToUnity(Input.gyro.attitude));
-    cam = Camera.main;
-    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, -0.5f);
-    rb = GetComponent<Rigidbody2D>();
-    rb.gravityScale = 0f;
-    transform.position = playerLauncher.transform.position;
-}
 
-private static Quaternion GyroToUnity(Quaternion q)
+    [SerializeField] AudioSource stretch;
+    [SerializeField] AudioSource fling;
+    // Start is called before the first frame update
+    void Start()
+    {
+        startingPhoneRotation = new Vector3(90, 0, 0);
+        offset = Quaternion.Inverse(GyroToUnity(Input.gyro.attitude));
+        cam = Camera.main;
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * GameManager.Instance.scalingObj.localScale.x, gameObject.transform.localScale.y * GameManager.Instance.scalingObj.localScale.y, -0.5f);
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        transform.position = playerLauncher.transform.position;
+
+        GameManager.gameRestart += Reset;
+    }
+
+    private static Quaternion GyroToUnity(Quaternion q)
     {
         return new Quaternion(q.x, q.y, -q.z, -q.w);
     }
 
-// Update is called once per frame
-void Update()
-{
-     if (isOnPhone)
-     {
-        if (launched) { LeftToRight(); }
-        else { /*DragLaunch();*/ HoldLaunch(); }
-     }
-     else
-     {
-        LeftToRight();
-     }
-
-}
-
-private void FixedUpdate()
-{
-    if (isOnPhone)
+    // Update is called once per frame
+    void Update()
     {
-       rb.velocity = new Vector2(xVelocity, yVelocity);
-    }
-    else
-    {
-       rb.velocity = new Vector2(speedX, 0);
-    }
-}
-
-void LeftToRight()
-{
-    //Movement
-    xVelocity = Input.acceleration.x * moveSpeed;
-    Quaternion phoneRot = offset * GyroToUnity(Input.gyro.attitude);
-    yVelocity = phoneRot.x * moveSpeed;
-    
-    speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
-    
-    //Teleporting from side to side when outside of the screen
-    Vector3 cPos = cam.WorldToScreenPoint(transform.position);
-    if (cPos.x + 20 <= 0)
-    {
-        transform.position = cam.ScreenToWorldPoint(new Vector3(Screen.width, cPos.y, cPos.z));
-    }
-    if (cPos.x - 20 >= Screen.width)
-    {
-        transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
-    }
-}
-    private void HoldLaunch()
-    {
-        //HOLDING DOWN ON THE SCREEN
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary)
-        {
-            launchSpeed += speedCharge;
-            //JETPACK
-        }
-        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
-        {
-            LaunchPlayer(launchSpeed);
-            launched = true;
+        if(Input.GetKeyDown(KeyCode.Escape) && MicrophoneInput.instance.blown == true) {
+            stretch.Stop();
+            fling.Play();
+            float dist = transform.position.y - playerLauncher.transform.position.y;
+            LaunchPlayer(-dist * speedCharge);
             launchSpeed = 0;
+            launched = true;
+            transform.position = playerLauncher.transform.position;
+        }
 
+        if (isOnPhone)
+        {
+            if (MicrophoneInput.instance != null)
+            {
+                if (MicrophoneInput.instance.blown == true)
+                {
+                    if (launched) { LeftToRight(); }
+                    else { DragLaunch(); /*HoldLaunch();*/ }
+                }
+            }
+        }
+        else
+        {
+            //beginGame?.Invoke();
+            LeftToRight();
+        }
+
+        if (!GameManager.Instance.gameOn)
+        {
+            transform.position = new Vector3 (0, transform.position.y, transform.position.z);
+        }
+
+
+        if (!GameManager.Instance.gameOn && !MicrophoneInput.instance.blown)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+
+        if (GameManager.Instance.gameOn && !MicrophoneInput.instance.blowing && MicrophoneInput.instance.blown)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
-    private void DragLaunch() { 
+
+    private void FixedUpdate()
+    {
+        if (isOnPhone && GameManager.Instance.gameOn )
+        {
+            rb.velocity = new Vector2(xVelocity, yVelocity);
+        }
+        else if (GameManager.Instance.gameOn)
+        {
+            rb.velocity = new Vector2(speedX, 0);
+        }
+    }
+
+    void LeftToRight()
+    {
+        //Movement
+        xVelocity = Input.acceleration.x * moveSpeed;
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
+        {
+
+            if (MicrophoneInput.instance.blowCharge > 0.5f) { MicrophoneInput.instance.blowCharge -= 0.1f; yVelocity = 1f; }
+        }
+        else { yVelocity = -0.2f; }
+
+        speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
+
+        //Teleporting from side to side when outside of the screen
+        Vector3 cPos = cam.WorldToScreenPoint(transform.position);
+        if (cPos.x + 20 <= 0)
+        {
+            transform.position = cam.ScreenToWorldPoint(new Vector3(Screen.width, cPos.y, cPos.z));
+        }
+        if (cPos.x - 20 >= Screen.width)
+        {
+            transform.position = cam.ScreenToWorldPoint(new Vector3(0, cPos.y, cPos.z));
+        }
+        Mathf.Clamp(transform.position.y, -5, 3);
+    }
+
+    private void DragLaunch()
+    {
         //DRAGGING DOWN
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
         {
             Vector3 fingerPos = cam.ScreenToWorldPoint(Input.touches[0].position);
-            if (fingerPos.y <= playerLauncher.transform.position.y)
+            if (fingerPos.y < playerLauncher.transform.position.y)
             {
-                Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y,0));
-                transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);  
+                Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y, 0));
+                transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);
+                launching = true;
+                if (!stretch.isPlaying) { stretch.Play(); }
             }
             else
             {
+                stretch.Stop();
                 transform.position = playerLauncher.transform.position;
+                launching = false;
             }
 
         }
-        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended)
+        else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended && launching)
         {
+            stretch.Stop();
+            fling.Play();
             float dist = transform.position.y - playerLauncher.transform.position.y;
             LaunchPlayer(-dist * speedCharge);
-            launched = true;
             launchSpeed = 0;
-
-            //Temp
+            launched = true;
             transform.position = playerLauncher.transform.position;
         }
     }
-    private void LaunchPlayer(float speedCharge) 
+    private void LaunchPlayer(float speedCharge)
     {
         /*transform.position = cam.ScreenToWorldPoint(new Vector3(Input.touches[0].position.x, Input.touches[0].position.y,0));
         transform.position = new Vector3(transform.position.x,transform.position.y,0);*/
         GameManager.Instance.speed = speedCharge;
         beginGame?.Invoke();
         print(speedCharge);
+        MicrophoneInput.instance.RecordInGame();
+        launched = true;
+    }
+
+
+    private void HoldLaunch()
+    {
+        //HOLDING DOWN ON THE SCREEN
+        if (Input.GetMouseButtonDown(0))
+        {
+            launchSpeed += speedCharge;
+
+            //JETPACK
+        }
+        else
+        {
+            LaunchPlayer(launchSpeed);
+            launchSpeed = 0;
+
+        }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.gameRestart += Reset;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.gameRestart -= Reset;
+    }
+
+    public void Reset()
+    {
+        xVelocity = 0; yVelocity = 0;
+        
+        transform.position = playerLauncher.transform.position;
+        launched = false;
+        
         
     }
-    
 }

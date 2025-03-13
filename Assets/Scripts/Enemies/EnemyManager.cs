@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(EnemyMoveBehaviour))]
 public class EnemyManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class EnemyManager : MonoBehaviour
     private EnemyMoveBehaviour moveBehaviour;
     [SerializeField]
     private ShootingBehaviour shootBehviour;
+    [SerializeField]
+    private AudioSource collisonSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,25 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.gameOn)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                collisonSound.Play();   
+                MicrophoneInput.instance.blowCharge -= 15f;
+                Destroy(gameObject);
+            }
         
     }
+
+
 }

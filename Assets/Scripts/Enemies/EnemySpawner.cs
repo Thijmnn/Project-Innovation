@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 using static Info;
@@ -42,7 +42,7 @@ public class SpawnerScript : MonoBehaviour
     {
         GameManager.gameStart += GameStart;
     }
-    private void DisEnable()
+    private void OnDisable()
     {
         GameManager.gameStart -= GameStart;
     }
@@ -63,6 +63,10 @@ public class SpawnerScript : MonoBehaviour
     {
         while (true)
         {
+            if (!GameManager.Instance.gameOn)
+            {
+                yield break;
+            }
             int spawnChoice = UnityEngine.Random.Range(0, coins.CoinList.Count);
             int randomSpawn = UnityEngine.Random.Range(1, coins.CoinList[spawnChoice].ammountPerSpawn);
             for (int j = 1; j > 0; j++)
@@ -95,6 +99,10 @@ public class SpawnerScript : MonoBehaviour
     {
         while (true)
         {
+            if (!GameManager.Instance.gameOn)
+            {
+                yield break;
+            }
             if (firstSpawn)
             {
                 firstSpawn = false;
@@ -142,23 +150,26 @@ public class SpawnerScript : MonoBehaviour
     }
     void Update()
     {
-        if (spawnTimer.Count != 0)
+        if (GameManager.Instance.gameOn)
         {
-            for (int i = 0; i < spawnTimer.Count; i++)
+            if (spawnTimer.Count != 0)
             {
-                spawnTimer[i] += Time.deltaTime;
+                for (int i = 0; i < spawnTimer.Count; i++)
+                {
+                    spawnTimer[i] += Time.deltaTime;
+                }
             }
-        }
-        if (spawnTimer.Count != 0)
-        {
-            if (spawnTimer[0] > 2.0f)
+            if (spawnTimer.Count != 0)
             {
-                GameObject warnEn = Instantiate(spawnTypeWarning[0], spawnPosEnemy[0], transform.rotation);
-                warnEn.GetComponent<EnemyMoveBehaviour>().orientation = warningSpawnOrientation[0];
-                warningSpawnOrientation.RemoveAt(0);
-                spawnTypeWarning.RemoveAt(0);
-                spawnPosEnemy.RemoveAt(0);
-                spawnTimer.RemoveAt(0);
+                if (spawnTimer[0] > 2.0f)
+                {
+                    GameObject warnEn = Instantiate(spawnTypeWarning[0], spawnPosEnemy[0], transform.rotation);
+                    warnEn.GetComponent<EnemyMoveBehaviour>().orientation = warningSpawnOrientation[0];
+                    warningSpawnOrientation.RemoveAt(0);
+                    spawnTypeWarning.RemoveAt(0);
+                    spawnPosEnemy.RemoveAt(0);
+                    spawnTimer.RemoveAt(0);
+                }
             }
         }
     }

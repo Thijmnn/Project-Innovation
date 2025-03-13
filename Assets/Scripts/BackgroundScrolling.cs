@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D;
+
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BackgroundScrolling : MonoBehaviour
 {
@@ -53,6 +52,9 @@ public class BackgroundScrolling : MonoBehaviour
     bool switchl7;
     int layerLevelL7 = 0;
 
+
+    [SerializeField] GameObject l1_2;
+
     enum bgType
     {
         Land,
@@ -75,6 +77,7 @@ public class BackgroundScrolling : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
+        scaleL1 = bg1.transform.localScale.y;
         cam = Camera.main;
         Layer1Start();
         ScreenQuarterStart(l2);
@@ -86,7 +89,7 @@ public class BackgroundScrolling : MonoBehaviour
     }
     void Layer1Start()
     {
-        scaleL1 = bg1.transform.localScale.y;
+        l1_2.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg1.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg2.transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height * 2, 100));
         bg1.transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, 4);
@@ -114,8 +117,8 @@ public class BackgroundScrolling : MonoBehaviour
         for (int i = 0; i < l.Count; i++)
         {
             l[i].transform.localScale = cam.ScreenToWorldPoint(new Vector3(Screen.width * 1.5f, Screen.height * 1.5f, 100));
-            if (i == 0) l[i].transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, l[i].transform.position.z + 2);
-            else l[i].transform.position = new Vector3(0, 0, l[i].transform.position.z + 2);
+            if (i == 0) l[i].transform.position = new Vector3(0, 0 , l[i].transform.position.z + 2);
+            else l[i].transform.position = new Vector3(0, 0 + bg1.transform.localScale.y, l[i].transform.position.z + 2);
         }
 
     }
@@ -155,23 +158,31 @@ public class BackgroundScrolling : MonoBehaviour
         if (!sp.materials[0].name.Contains(_materialL1[curLevel].name))
         {
             sp.material = (_materialL1[curLevel]);
+            Renderer sp2 = l1_2.GetComponent<Renderer>();
+            sp2.material = (_materialL1[curLevel]);
         }
         if (switching)
         {
             sp.material = (_materialL1[curLevel]);
+            Renderer sp2 = l1_2.GetComponent<Renderer>();
+            sp2.material = (_materialL1[curLevel]);
             curLevel += 1;
             switching = false;
 
         }
-        if (GameManager.Instance.height > 20 && bgLevel == bgType.Land)
+        print(GameManager.Instance.EnemyLevel);
+        print(GameManager.Instance.height);
+
+        if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel + 1)) && bgLevel == bgType.Land)
         {
+            print("aaa");
             curLevel += 1;
             bgLevel = bgType.Sky;
             switching = true;
             switchl2 = true;
             switchl6 = true;
         }
-        if (GameManager.Instance.height > 40 && bgLevel == bgType.Sky)
+        else if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel )) && bgLevel == bgType.Sky)
         {
             curLevel += 1;
             bgLevel = bgType.Orbit;
@@ -180,7 +191,7 @@ public class BackgroundScrolling : MonoBehaviour
             switchl6 = true;
             switchl7 = true;
         }
-        if (GameManager.Instance.height > 60 && bgLevel == bgType.Orbit)
+        else if (GameManager.Instance.height > (GameManager.Instance.levelUpInterval * (curLevel - 1)) && bgLevel == bgType.Orbit)
         {
             curLevel += 1;
             bgLevel = bgType.Space;
@@ -224,7 +235,7 @@ public class BackgroundScrolling : MonoBehaviour
         }
         else if (!sp.materials[0].name.Contains(materials[layerLevelL7].name))
         {
-            if (bgLevel != bgType.Orbit && i % 2 != 0);
+            if (bgLevel != bgType.Orbit && i % 2 != 0) ;
             else sp.material = (materials[layerLevelL7]);
         }
     }
@@ -238,7 +249,7 @@ public class BackgroundScrolling : MonoBehaviour
             }
             sp.material = (materials[layerLevelL2]);
 
-            
+
             layerSwitch = false;
             if (switchl2 && layer == 2) switchl2 = false;
         }
@@ -256,11 +267,94 @@ public class BackgroundScrolling : MonoBehaviour
             sp.material = (materials[layerLevelL2]);
         }
     }
-
-
     void Layer3(List<Material> materials, Renderer sp)
     {
         sp.material = (materials[1]);
+    }
+    private void OnEnable()
+    {
+        GameManager.gameRestart += ResetBackgrounds;
+    }
+    private void OnDisable()
+    {
+        GameManager.gameRestart -= ResetBackgrounds;
+    }
+    void ResetBackgrounds()
+    {
+        ResetFirstLayer(_materialL1);
+        ResetNormal(l2, _materialL2, switchl2, speedScaleL2, scaleL2, 2);
+        ResetFirstImage(l3, _materialL3, switchl3, speedScaleL3, scaleL3, 3);
+        ResetFirstImage(l4, _materialL4, switchl4, speedScaleL4, scaleL4, 4);
+        ResetFirstImage(l5, _materialL5, switchl5, speedScaleL5, scaleL5, 5);
+        ResetNormal(l6, _materialL6, switchl6, speedScaleL6, scaleL6, 6);
+        EveryOther(l7, _materialL7, switchl7, speedScaleL7, scaleL7, 7);
+
+        bgLevel = bgType.Land;
+        layerLevelL2 = 0;
+        layerLevelL3 = 0;
+        layerLevelL4 = 0;
+        layerLevelL5 = 0;
+        layerLevelL6 = 0;
+        layerLevelL7 = 0;
+
+        switchl2 = false;
+        switchl7 = false;
+    }
+
+    void ResetNormal(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    {
+        ScreenQuarterStart(Layer);
+        for (int i = 0; i < Layer.Count; i++)
+        {
+            Renderer sp = Layer[i].GetComponent<Renderer>();
+            sp.material = (materials[0]);
+            Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z-2);
+        }
+        layerSwitch = false;
+    }
+    void EveryOther(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int layer)
+    {
+        ScreenQuarterStart(Layer);
+        for (int i = 0; i < Layer.Count; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Renderer sp = Layer[i].GetComponent<Renderer>();
+                sp.material = (materials[0]);
+            }
+            Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z - 2);
+        }
+        layerSwitch = false;
+    }
+    void ResetFirstImage(List<GameObject> Layer, List<Material> materials, bool layerSwitch, float speedScale, float sizeScale, int lay)
+    {
+        if (lay == 3)
+        {
+            print("lay");
+            ScreenQuarterStart(Layer);
+            Layer[0].transform.position = new Vector3(Layer[0].transform.position.x, Layer[0].transform.position.y, 2.13f);
+        }
+        else
+        {
+            ScreenSizeStart(Layer);
+            for (int i = 0; i < Layer.Count; i++)
+            {
+                Layer[i].transform.position = new Vector3(Layer[i].transform.position.x, Layer[i].transform.position.y, Layer[i].transform.position.z - 2);
+            }
+        }
+
+        Renderer sp = Layer[0].GetComponent<Renderer>();
+        sp.material = (materials[0]);
+        
+    }
+    void ResetFirstLayer(List<Material> materials)
+    {
+        Layer1Start();
+
+        Renderer sp = bg1.GetComponent<Renderer>();
+        sp.material = (materials[0]);
+        sp = bg2.GetComponent<Renderer>();
+        sp.material = (materials[0]);
     }
 
 }
