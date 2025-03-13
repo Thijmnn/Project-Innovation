@@ -38,7 +38,7 @@ public class MicrophoneInput : MonoBehaviour
     
     string microphoneName;
 
-    
+    public bool blowing;
 
     [SerializeField, HideInInspector] public bool blown;
 
@@ -68,9 +68,11 @@ public class MicrophoneInput : MonoBehaviour
         {
             AnimatePlayer();
             GetMaxCharge(maxCharge, loudnessThreshold);
+            blowing = true;
         }
         else if(!_startAudioSource.isPlaying && !_audioSource.isPlaying && once)
         {
+            blowing = false;
             SetMaxCharge(blowCharge);
             blown = true;
         }
