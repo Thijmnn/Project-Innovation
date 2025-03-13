@@ -79,12 +79,22 @@ public class MoveBehaviour : MonoBehaviour
         {
             transform.position = new Vector3 (0, transform.position.y, transform.position.z);
         }
-       
+
+
+        if (!GameManager.Instance.gameOn && !MicrophoneInput.instance.blown)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+
+        if (GameManager.Instance.gameOn && !MicrophoneInput.instance.blowing && MicrophoneInput.instance.blown)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (isOnPhone && GameManager.Instance.gameOn)
+        if (isOnPhone && GameManager.Instance.gameOn )
         {
             rb.velocity = new Vector2(xVelocity, yVelocity);
         }
@@ -100,8 +110,8 @@ public class MoveBehaviour : MonoBehaviour
         xVelocity = Input.acceleration.x * moveSpeed;
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Stationary || Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved)
         {
-            yVelocity = 0.2f;
-            if (MicrophoneInput.instance.blowCharge > 0) { MicrophoneInput.instance.blowCharge -= 0.2f; }
+            
+            if (MicrophoneInput.instance.blowCharge > 0) { MicrophoneInput.instance.blowCharge -= 0.1f; yVelocity = 1f; }
         }
         else { yVelocity = -0.2f; }
 
