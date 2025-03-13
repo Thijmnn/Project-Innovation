@@ -2754,7 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpInterval: 20
-  speed: 2
+  speed: 1
   airResist: 0
   jetMult: 1
   height: 0
