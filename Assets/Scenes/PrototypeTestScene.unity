@@ -768,7 +768,7 @@ MonoBehaviour:
   shop: {fileID: 1610758259}
   tutorial: {fileID: 222678908}
   duringGame: {fileID: 25146833}
-  story: {fileID: 235940354}
+  story: {fileID: 822356832}
 --- !u!114 &92485341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3589,7 +3589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &822356833
 MonoBehaviour:
   m_ObjectHideFlags: 0
