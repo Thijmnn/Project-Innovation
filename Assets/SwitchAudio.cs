@@ -41,7 +41,7 @@ public class SwitchAudio : MonoBehaviour
             m_AudioSource.loop = false;
             if (m_AudioSource.isPlaying == false)
             {
-                currentSound = sounds.game;
+                currentSound = sounds.menu;
                 m_AudioSource.loop = true;
                 m_AudioSource.clip = clips[1];
                 m_AudioSource.Play();

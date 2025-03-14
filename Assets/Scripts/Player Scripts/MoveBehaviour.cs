@@ -36,6 +36,7 @@ public class MoveBehaviour : MonoBehaviour
 
     [SerializeField] AudioSource stretch;
     [SerializeField] AudioSource fling;
+    [SerializeField] AudioSource canonLaunch;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,15 +59,6 @@ public class MoveBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && MicrophoneInput.instance.blown == true) {
-            stretch.Stop();
-            fling.Play();
-            float dist = transform.position.y - playerLauncher.transform.position.y;
-            LaunchPlayer(-dist * speedCharge);
-            launchSpeed = 0;
-            launched = true;
-            transform.position = playerLauncher.transform.position;
-        }
 
         if (isOnPhone)
         {
@@ -151,7 +143,8 @@ public class MoveBehaviour : MonoBehaviour
                 Vector3 draggedPos = transform.position = cam.ScreenToWorldPoint(new Vector3(0, Input.touches[0].position.y, 0));
                 transform.position = new Vector3(playerLauncher.transform.position.x, draggedPos.y, playerLauncher.transform.position.z);
                 launching = true;
-                if (!stretch.isPlaying) { stretch.Play(); }
+                if (!LaunchManager.Instance.canon) { if (!stretch.isPlaying) { stretch.Play(); } }
+                
             }
             else
             {
@@ -163,8 +156,16 @@ public class MoveBehaviour : MonoBehaviour
         }
         else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Ended && launching)
         {
+            if (!LaunchManager.Instance.canon)
+            {
+                fling.Play();
+            }
+            else
+            {
+                canonLaunch.Play();   
+            }
             stretch.Stop();
-            fling.Play();
+            
             float dist = transform.position.y - playerLauncher.transform.position.y;
             LaunchPlayer(-dist * speedCharge);
             launchSpeed = 0;
