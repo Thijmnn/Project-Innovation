@@ -18,7 +18,7 @@ public class UI_Script : MonoBehaviour
         if (firstPlay)
         {
             story.SetActive(true);
-            firstPlay = false;
+            
         }
         shop.SetActive(false);
         start.SetActive(false);
@@ -66,6 +66,7 @@ public class UI_Script : MonoBehaviour
     public void StartTutorial()
     {
         tutorial.SetActive(true);
+        firstPlay = false;
         Invoke("CloseTutorial", 3);
         
     }
