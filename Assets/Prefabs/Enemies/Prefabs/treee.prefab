@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2456474754522250592}
   - component: {fileID: -5216346198231931662}
   - component: {fileID: -4876475031099299853}
+  - component: {fileID: -958921128109850628}
   m_Layer: 0
   m_Name: treee
   m_TagString: Untagged
@@ -284,6 +285,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c9883127f4c7b43a8039dddbc2d963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveBehaviour: {fileID: 0}
+  moveBehaviour: {fileID: -958921128109850628}
   shootBehviour: {fileID: 0}
   collisonSound: {fileID: 798973332989282815, guid: ddeaeba1e06c48f40ba0e5dda863104c, type: 3}
+--- !u!114 &-958921128109850628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293611278991751066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a78e3350ed17a442bc5681d13fd1961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: 0
+  collisionSoundEffect: {fileID: 0}
+  fallingSpeed: 2

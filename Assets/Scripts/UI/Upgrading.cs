@@ -19,7 +19,6 @@ public class Upgrading : MonoBehaviour
     {
         if (price.cost <= GameManager.Instance.money)
         {
-            GameManager.Instance.money -= price.cost;
             curUpgrade += 1;
             if (currentSprite < sprites.Count - 1 && curUpgrade % 4 == 0)
             {

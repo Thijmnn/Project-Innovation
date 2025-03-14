@@ -8,7 +8,7 @@ public class Tutorialscript : MonoBehaviour
     [SerializeField] GameObject tilt;
     [SerializeField] GameObject blow;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         tilt.SetActive(true);
         blow.SetActive(false);

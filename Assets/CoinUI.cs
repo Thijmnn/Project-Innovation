@@ -18,7 +18,7 @@ public class CoinUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(coins < GameManager.Instance.money)
+        if(coins != GameManager.Instance.money)
         {
             coins = GameManager.Instance.money;
             m_TextMeshPro.text = coins.ToString();
