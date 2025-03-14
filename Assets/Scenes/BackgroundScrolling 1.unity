@@ -1141,12 +1141,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c84de03063475340bbb68a67c48243d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelUpInterval: 0
   speed: 2
   airResist: 0
   jetMult: 1
   height: 0
   money: 0
   maxLevel: 3
+  gameOn: 0
   EnemyLevel: 0
   enem:
   - {fileID: 11400000, guid: 36fca423b6a0f4ef6832c2a5786c8b04, type: 2}
@@ -1158,6 +1160,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c934b6a036c3fbd4f9ce3367af8085b4, type: 2}
   scalingObj: {fileID: 1663500691}
   levelUp: 0
+  deathSound: {fileID: 0}
+  highscoreText: {fileID: 0}
 --- !u!4 &1366175643
 Transform:
   m_ObjectHideFlags: 0
@@ -1222,6 +1226,22 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 08b8f51093f7ded48956f93cd81de51e, type: 2}
   - {fileID: 2100000, guid: 120589cfbb54815468534a60e58fa088, type: 2}
   speedScaleL2: 0.3
+  l3: []
+  _materialL3: []
+  speedScaleL3: 0
+  l4: []
+  _materialL4: []
+  speedScaleL4: 0
+  l5: []
+  _materialL5: []
+  speedScaleL5: 0
+  l6: []
+  _materialL6: []
+  speedScaleL6: 0
+  l7: []
+  _materialL7: []
+  speedScaleL7: 0
+  l1_2: {fileID: 0}
   bgLevel: 0
   curLevel: 0
 --- !u!4 &1485165717
@@ -1997,8 +2017,11 @@ MonoBehaviour:
   moveSpeed: 1
   speedCharge: 0
   playerLauncher: {fileID: 2130077637}
+  launching: 0
   isOnPhone: 0
   startingPhoneRotation: {x: 0, y: 0, z: 0}
+  stretch: {fileID: 0}
+  fling: {fileID: 0}
 --- !u!114 &2130077639
 MonoBehaviour:
   m_ObjectHideFlags: 0
