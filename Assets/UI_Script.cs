@@ -18,10 +18,13 @@ public class UI_Script : MonoBehaviour
         if (firstPlay)
         {
             story.SetActive(true);
-            
+            start.SetActive(false);
+        }
+        else
+        {
+        start.SetActive(true);
         }
         shop.SetActive(false);
-        start.SetActive(false);
         tutorial.SetActive(false);
         duringGame.SetActive(false);
     }
