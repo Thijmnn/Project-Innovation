@@ -55,7 +55,6 @@ public class HawkTuah : MonoBehaviour
             return;
         }
 
-        print(mic_pos);
         _audio.GetData(spectrum, mic_pos);
 
         for (int i = 0; i < spectrum.Length; i++)
