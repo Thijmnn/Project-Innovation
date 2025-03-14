@@ -11,10 +11,15 @@ public class UI_Script : MonoBehaviour
     [SerializeField] GameObject duringGame;
     [SerializeField] GameObject story;
     public static event Action startGame;
+    bool firstPlay = true;
     // Start is called before the first frame update
     void Start()
     {
-        story.SetActive(true);
+        if (firstPlay)
+        {
+            story.SetActive(true);
+            firstPlay = false;
+        }
         shop.SetActive(false);
         start.SetActive(false);
         tutorial.SetActive(false);
@@ -50,7 +55,12 @@ public class UI_Script : MonoBehaviour
     }
     public void StartGame()
     {
+        if(firstPlay)
         StartTutorial();
+        else
+        {
+            CloseTutorial();
+        }
         start.SetActive(false);
     }
     public void StartTutorial()
